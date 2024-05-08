@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sports extends Model
+class categories extends Model
 {
-    protected $table = 'spots';
+    protected $table = 'categories';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'description', 'price','quantity'];
+    protected $fillable = ['categories'];
     use HasFactory;
 }
-

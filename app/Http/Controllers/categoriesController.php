@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\Sports;
+use App\Models\categories;
 use Illuminate\View\View;
 
 
-class sportsController extends Controller
+class categoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index():View
     {
-        $sports = Sports::all();
-        return view ('sports.index')->with('sports', $sports);
+        $categories = categories::all();
+        return view ('categories.index')->with('categories', $categories);
     }
 
     /**
@@ -25,7 +25,7 @@ class sportsController extends Controller
      */
     public function create(): View
     {
-        return view('sports.create');
+        return view('categories.create');
     }
 
     /**
@@ -34,8 +34,8 @@ class sportsController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $input = $request->all();
-        Sports::create($input);
-        return redirect('sports')->with('flash_message', 'Sports Addedd!');
+        categories::create($input);
+        return redirect('categories')->with('flash_message', 'categories Addedd!');
     }
 
     /**
@@ -43,8 +43,8 @@ class sportsController extends Controller
      */
     public function show(string $id): View
     {
-        $sports = Sports::find($id);
-        return view('sports.show')->with('sports', $sports);
+        $categories = categories::find($id);
+        return view('categories.show')->with('categories', $categories);
     }
 
     /**
@@ -52,8 +52,8 @@ class sportsController extends Controller
      */
     public function edit(string $id): View
     {
-        $sports = Sports::find($id);
-        return view('sports.edit')->with('sports', $sports);
+        $categories = categories::find($id);
+        return view('categories.edit')->with('categories', $categories);
     }
 
     /**
@@ -61,10 +61,10 @@ class sportsController extends Controller
      */
     public function update(Request $request, string $id): RedirectResponse
     {
-        $sports = Sports::find($id);
+        $categories= categories::find($id);
         $input = $request->all();
-        $sports->update($input);
-        return redirect('sports')->with('flash_message', 'sports Updated!');
+        $categories->update($input);
+        return redirect('categories')->with('flash_message', 'categories Updated!');
     }
 
     /**
@@ -72,7 +72,7 @@ class sportsController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        Sports::destroy($id);
-        return redirect('sports')->with('flash_message', 'Sports deleted!');
+        categories::destroy($id);
+        return redirect('categories')->with('flash_message', 'categories deleted!');
     }
 }
