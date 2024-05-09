@@ -14,7 +14,7 @@
                         <a href="{{ url('/categories/create') }}" class="btn btn-success btn-sm" title="Add New categories">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
-                        <div class="dropdown">
+                        <div class="dropdown float-end">
                             <a class="btn btn-secondary dropdown-toggle" href="bootstrap.min.css" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                               Dropdown link
                             </a>
@@ -35,7 +35,7 @@
                                         <th>s.no</th>
 
                                         <th>categories</th>
-
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>

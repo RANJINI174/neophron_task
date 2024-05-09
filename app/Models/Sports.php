@@ -9,7 +9,12 @@ class Sports extends Model
 {
     protected $table = 'spots';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'description', 'price','quantity'];
+    protected $fillable = ['name', 'description', 'price','quantity','categories-Id'];
     use HasFactory;
+   /* public function categories()
+    {
+        return $this->hasMany(categories::class);
+    }
+    */
 }
 

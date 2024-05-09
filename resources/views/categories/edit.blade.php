@@ -11,7 +11,6 @@
         <input type="hidden" name="id" id="id" value="{{$categories->id}}" id="id" />
         <label>categories</label></br>
         <input type="text" name="name" id="name" value="{{$categories->name}}" class="form-control"></br>
-
         <input type="submit" value="Update" class="btn btn-success"></br>
     </form>
 

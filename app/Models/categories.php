@@ -11,4 +11,9 @@ class categories extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['categories'];
     use HasFactory;
+
+    public function Sports()
+    {
+        return $this->belongsTo(Sports::class);
+    }
 }

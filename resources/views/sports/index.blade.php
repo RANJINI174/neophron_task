@@ -7,18 +7,24 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
-
                         <h2>Sports App</h2>
-                    </div>
-                    <div class="card-body">
-                        <a href="{{ url('/sports/create') }}" class="btn btn-success btn-sm" title="Add New Student">
+                          </div>
+                        <div class="card-body">
+                          <a href="{{ url('/sports/create') }}" class="btn btn-success btn-sm" title="Add New Student">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
-                    
-                        <div class="dropdown float-end">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              categories
                             </a>
+                            <div class="dropdown float-end">
+                                <a class="btn btn-secondary dropdown-toggle" href="bootstrap.min.css" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  categories
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="{{ url('sports') }}">Ball</a></li>
+                                  <li><a class="dropdown-item" href="#">Bat</a></li>
+                                  <li><a class="dropdown-item" href="{{ url('categories') }}">add categries</a></li>
+                                </ul>
+                              </div>
+
                         <br/>
                         <br/>
                         <div class="table-responsive">

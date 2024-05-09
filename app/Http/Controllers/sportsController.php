@@ -75,4 +75,13 @@ class sportsController extends Controller
         Sports::destroy($id);
         return redirect('sports')->with('flash_message', 'Sports deleted!');
     }
+
+
+    /**public function viewStores($categoryId)
+    {
+    $categories = Categories::findOrFail($categoryId);
+    $sports = $categories->sports;
+
+    return view('sports.index1', compact('sports','categories'));
+     } */
 }

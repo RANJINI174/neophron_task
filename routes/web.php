@@ -11,3 +11,4 @@ Route::get('/', function () {
 
 Route::resource("/sports", SportsController::class);
 Route::resource("/categories", categoriesController::class);
+
