@@ -17,6 +17,16 @@
         <input type="text" name="price" id="price" value="{{$sports->price}}" class="form-control"></br>
         <label>quantity</label></br>
         <input type="text" name="quantity" id="quantity" value="{{$sports->quantity}}" class="form-control"></br>
+        <div class="form-group">
+
+            <label for="categories">Category</label>
+            <select name="categories_id" id="categories_id" class="form-control">
+
+                @foreach($categories as $item)
+                    <option value="{{ $item->id }}">{{ $item->categories }}</option>
+                @endforeach
+            </select>
+        </div>
         <input type="submit" value="Update" class="btn btn-success"></br>
     </form>
 

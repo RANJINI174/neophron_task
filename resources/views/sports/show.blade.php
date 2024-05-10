@@ -12,7 +12,7 @@
         <p class="card-text">description: {{ $sports->description }}</p>
         <p class="card-text">price : {{ $sports->price}}</p>
         <p class="card-text">quantity : {{ $sports->quantity }}</p>
-        <p class="card-text">Category Id : {{ $sports->quantity }}</p>
+        <p class="card-text">Category Id : {{ $sports->categories}}</p>
   </div>
 
     </hr>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Sports;
 use Illuminate\View\View;
-
+use App\Models\categories;
 
 class sportsController extends Controller
 {
@@ -17,7 +17,9 @@ class sportsController extends Controller
     public function index():View
     {
         $sports = Sports::all();
-        return view ('sports.index')->with('sports', $sports);
+        $categories = categories::all();
+        return view ('sports.index',compact('sports','categories'));
+        //return view ('sports.index')->with('sports', $sports);
     }
 
     /**
@@ -25,7 +27,8 @@ class sportsController extends Controller
      */
     public function create(): View
     {
-        return view('sports.create');
+        $categories = categories::all();
+        return view('sports.create')->with('categories',$categories);
     }
 
     /**
@@ -52,8 +55,14 @@ class sportsController extends Controller
      */
     public function edit(string $id): View
     {
-        $sports = Sports::find($id);
+       /* $sports = Sports::find($id);
         return view('sports.edit')->with('sports', $sports);
+        $categories = categories::all();
+        return view('sports.create')->with('categories',$categories);
+        */
+        $sports = Sports::find($id);
+        $categories = categories::all();
+        return view('sports.edit')->with('categories', $categories)->with('sports', $sports);
     }
 
     /**
@@ -77,11 +86,12 @@ class sportsController extends Controller
     }
 
 
-    /**public function viewStores($categoryId)
+    public function viewStores($id)
     {
-    $categories = Categories::findOrFail($categoryId);
+    $categories = categories::find($id);
     $sports = $categories->sports;
 
-    return view('sports.index1', compact('sports','categories'));
-     } */
+    return view('sports.index1')->with('sports','categories');
+
+}
 }

@@ -15,14 +15,14 @@
         <input type="text" name="price" id="price" class="form-control"></br>
         <label>quantity</label></br>
         <input type="text" name="quantity" id="quantity" class="form-control"></br>
-       <label>categories-Id</label></br>
-        <input type="text" name="categories-Id" id="categories-Id" class="form-control"></br>
+
         <div class="form-group">
-            <label for="category">Category</label>
-            <select name="category" id="category" class="form-control">
-                <option value="">Select Category</option>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+
+            <label for="categories">Category</label>
+            <select name="categories_id" id="categories_id" class="form-control">
+
+                @foreach($categories as $item)
+                    <option value="{{ $item->id }}">{{ $item->categories }}</option>
                 @endforeach
             </select>
         </div>

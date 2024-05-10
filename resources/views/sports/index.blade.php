@@ -33,9 +33,10 @@
                                     <tr>
                                         <th>s.no</th>
                                         <th>Name</th>
-                                        <th>decription</th>
-                                        <th>price</th>
-                                        <th>quantity</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Categories</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -47,6 +48,7 @@
                                         <td>{{ $item->description }}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->quantity }}</td>
+                                        <td>{{ $item->categories_id }}</td>
 
                                         <td>
                                             <a href="{{ url('/sports/' . $item->id) }}" title="View Sports"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

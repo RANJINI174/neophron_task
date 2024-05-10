@@ -25,7 +25,8 @@ class categoriesController extends Controller
      */
     public function create(): View
     {
-        return view('categories.create');
+        $categories = categories::all();
+        return view('categories.create')->with('categories',$categories);
     }
 
     /**
@@ -53,7 +54,7 @@ class categoriesController extends Controller
     public function edit(string $id): View
     {
         $categories = categories::find($id);
-        return view('categories.edit')->with('categories', $categories);
+         return view('categories.edit')->with('categories', $categories);
     }
 
     /**

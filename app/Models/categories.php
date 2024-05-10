@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Sports;
 
 class categories extends Model
 {
@@ -14,6 +15,6 @@ class categories extends Model
 
     public function Sports()
     {
-        return $this->belongsTo(Sports::class);
+        return $this->hasMany(Sports::class,'categories');
     }
 }
