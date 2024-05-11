@@ -15,6 +15,6 @@ class categories extends Model
 
     public function Sports()
     {
-        return $this->hasMany(Sports::class,'categories');
+        return $this->hasMany(Sports::class,'categories_id');
     }
 }

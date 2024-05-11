@@ -18,12 +18,20 @@
                                   categories
                                 </a>
 
+
+
                                 <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="{{ url('sports') }}">Ball</a></li>
-                                  <li><a class="dropdown-item" href="#">Bat</a></li>
-                                  <li><a class="dropdown-item" href="{{ url('categories') }}">add categries</a></li>
+                                <tbody>
+
+                                    @foreach ($categories as $item)
+                                    <li><a class="dropdown-item" href="{{url('categories/' . $item->id .'/store') }}">
+                                    <p> {{ $item->categories }}</p>
+                                    @endforeach
+                                  </a>
+                                  <a class="dropdown-item" href="{{ url('categories') }}">add categries</a></li>
                                 </ul>
                               </div>
+
 
                         <br/>
                         <br/>
@@ -40,7 +48,7 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+
                                 @foreach($sports as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>

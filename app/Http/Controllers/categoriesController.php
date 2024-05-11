@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\categories;
+use App\Models\sports;
 use Illuminate\View\View;
 
 
@@ -46,6 +47,8 @@ class categoriesController extends Controller
     {
         $categories = categories::find($id);
         return view('categories.show')->with('categories', $categories);
+
+
     }
 
     /**

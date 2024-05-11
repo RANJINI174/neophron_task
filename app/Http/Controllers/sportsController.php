@@ -20,7 +20,14 @@ class sportsController extends Controller
         $categories = categories::all();
         return view ('sports.index',compact('sports','categories'));
         //return view ('sports.index')->with('sports', $sports);
+
+    
+       /*  $sportss = Sports::with('categories')->get();
+        $categories = categories::with('sports')->get();
+         
+        return view('index', compact('sports', 'categories'));  */
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,6 +45,7 @@ class sportsController extends Controller
     {
         $input = $request->all();
         Sports::create($input);
+        //categories::create($input);
         return redirect('sports')->with('flash_message', 'Sports Addedd!');
     }
 
@@ -91,7 +99,7 @@ class sportsController extends Controller
     $categories = categories::find($id);
     $sports = $categories->sports;
 
-    return view('sports.index1')->with('sports','categories');
-
+    return view('sports.index1',compact('sports','categories'));
+    //return view('sports.index1')->with('sports', $sports)->with('categories', $categories);
 }
 }

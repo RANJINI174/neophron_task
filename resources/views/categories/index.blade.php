@@ -14,8 +14,6 @@
                         <a href="{{ url('/categories/create') }}" class="btn btn-success btn-sm" title="Add New categories">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
-                        
-
                         <br/>
                         <br/>
                         <div class="table-responsive">
