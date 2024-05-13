@@ -18,7 +18,7 @@
 
         <div class="form-group">
 
-            <label for="categories">Category</label>
+            <label for="categories_id">Category</label>
             <select name="categories_id" id="categories_id" class="form-control">
 
                 @foreach($categories as $item)

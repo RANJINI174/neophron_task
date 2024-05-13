@@ -23,21 +23,27 @@
                                         <th>s.no</th>
 
                                         <th>categories</th>
+
+                                        <th>No. of Items</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($categories as $item)
+                                {{-- <!--@foreach($categories as $item)--> --}}
+                                @foreach($categories as $item => $categories)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-
+                                      {{-- <!--  <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->categories  }}</td>
+                                        <td>{{ $item->categories  }}</td>   --> --}}
 
+                                        <td>{{ $item + 1 }}</td>
+                                        <td>{{ $categories->categories }}</td>
+                                        <td>{{ count($categories->sports) }}</td>
                                         <td>
-                                            <a href="{{ url('/categories/' . $item->id) }}" title="View categories "><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/categories/' . $item->id . '/edit') }}" title="Edit categories "><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/categories/' . $categories->id) }}" title="View categories "><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/categories/' . $categories->id . '/edit') }}" title="Edit categories "><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                                            <form method="POST" action="{{ url('/categories' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                            <form method="POST" action="{{ url('/categories' . '/' . $categories->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete categories" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
@@ -54,5 +60,5 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
+
+

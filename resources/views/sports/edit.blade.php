@@ -23,7 +23,10 @@
             <select name="categories_id" id="categories_id" class="form-control">
 
                 @foreach($categories as $item)
-                    <option value="{{ $item->id }}">{{ $item->categories }}</option>
+                  {{-- <option value="{{ $item->id }}">{{ $item->categories }}</option> --}}
+                  <option value="{{ $item->id }}" {{ $item->id == $sports->categories_id ? 'selected' : '' }}>
+                    {{ $item->categories }}
+                </option>
                 @endforeach
             </select>
         </div>

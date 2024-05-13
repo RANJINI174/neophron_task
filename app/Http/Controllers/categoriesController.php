@@ -6,7 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\categories;
-use App\Models\sports;
+use App\Models\Sports;
 use Illuminate\View\View;
 
 
@@ -19,6 +19,8 @@ class categoriesController extends Controller
     {
         $categories = categories::all();
         return view ('categories.index')->with('categories', $categories);
+      // $categories = categories::withCount('items')->get();
+       //return view('categories.index', compact('categories'));
     }
 
     /**
@@ -26,6 +28,7 @@ class categoriesController extends Controller
      */
     public function create(): View
     {
+       // return view('sports.add_categories');
         $categories = categories::all();
         return view('categories.create')->with('categories',$categories);
     }
@@ -54,7 +57,7 @@ class categoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): View
+    public function edit($id): View
     {
         $categories = categories::find($id);
          return view('categories.edit')->with('categories', $categories);

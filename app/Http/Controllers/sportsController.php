@@ -21,10 +21,10 @@ class sportsController extends Controller
         return view ('sports.index',compact('sports','categories'));
         //return view ('sports.index')->with('sports', $sports);
 
-    
+
        /*  $sportss = Sports::with('categories')->get();
         $categories = categories::with('sports')->get();
-         
+
         return view('index', compact('sports', 'categories'));  */
     }
 
@@ -34,9 +34,12 @@ class sportsController extends Controller
      */
     public function create(): View
     {
+        $sports = Sports::all();
         $categories = categories::all();
-        return view('sports.create')->with('categories',$categories);
+        //return view('sports.create')->with('categories',$categories);
+        return view('sports.create',compact('sports', 'categories'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -63,14 +66,15 @@ class sportsController extends Controller
      */
     public function edit(string $id): View
     {
-       /* $sports = Sports::find($id);
+     /*  $sports = Sports::find($id);
         return view('sports.edit')->with('sports', $sports);
         $categories = categories::all();
         return view('sports.create')->with('categories',$categories);
         */
-        $sports = Sports::find($id);
+        $sports = Sports::findOrFail($id);
         $categories = categories::all();
-        return view('sports.edit')->with('categories', $categories)->with('sports', $sports);
+        return view('sports.edit',compact('sports', 'categories'));
+
     }
 
     /**
@@ -94,12 +98,12 @@ class sportsController extends Controller
     }
 
 
-    public function viewStores($id)
-    {
+    public function index1($categories_id)
+    { return view('sports.welcome');
     $categories = categories::find($id);
     $sports = $categories->sports;
 
-    return view('sports.index1',compact('sports','categories'));
-    //return view('sports.index1')->with('sports', $sports)->with('categories', $categories);
+    ///return view('sports.index1',compact('sports','categories'));
+    return view('sports.index1')->with('sports', $sports);;
 }
 }

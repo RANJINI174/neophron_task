@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("description");
             $table->string("price");
             $table->string("quantity");
-           // $table->string("categories_id");
+            $table->string("categories_id");
             $table->unsignedBigInteger('categories_id')->nullable();
             $table->foreign('categories_id')->references('id')->on('categories');
             $table->timestamps();
@@ -33,6 +33,6 @@ return new class extends Migration
         Schema::table('spots', function (Blueprint $table) {
             $table->dropForeign(['categories_id']);
             $table->dropColumn('categories_id');
-        }); 
+        });
     }
 };
