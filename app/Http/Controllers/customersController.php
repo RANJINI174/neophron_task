@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use App\Models\customers;
 use Illuminate\View\View;
 use App\Models\groups;
+use App\Models\category;
 
 
 
@@ -20,14 +21,9 @@ class customersController extends Controller
     {
         $customers = customers::all();
         $groups = groups::all();
-        return view ('customers.index',compact('customers','groups'));
-        //return view ('customers.index')->with('customers', $customers);
+        $categories = Category::all();
+        return view ('customers.index',compact('customers','groups','categories'));
 
-
-       /*  $customerss = customers::with('groups')->get();
-        $groups = groups::with('customers')->get();
-
-        return view('index', compact('customers', 'groups'));  */
     }
 
 
@@ -53,13 +49,10 @@ class customersController extends Controller
        // $request->validate([
            // 'Name'=>'required'
         // ]);
-        //$input = $request->all();
-        //customers::create($input);
-       // return redirect('customers')->with('flash_message', 'customers Addedd!');
+
        $input = $request->all();
-      // $input['groups_id'] = $request->input('groups_id'); // Include groups_id from the request
        customers::create($input);
-       return redirect('customers')->with('flash_message', 'customers Addedd!');
+       return redirect('customers')->with('flash_message', 'Items Addedd!');
     }
 
     /**
@@ -111,12 +104,12 @@ class customersController extends Controller
     }
 
 
-    public function index1($groups_id)
-    { return view('customers.welcome');
-    $groups = groups::find($id);
-    $customers = $groups->customers;
+    //public function index1($groups_id)
+    //{ return view('customers.welcome');
+    //$groups = groups::find($id);
+    //$customers = $groups->customers;
 
     ///return view('customers.index1',compact('customers','groups'));
-    return view('customers.index1')->with('customers', $customers);;
+    //return view('customers.index1')->with('customers', $customers);;
 }
-}
+

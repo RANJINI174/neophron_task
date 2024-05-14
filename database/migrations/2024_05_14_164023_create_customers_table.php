@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-           $table->unsignedBigInteger('groups_id')->nullable();
+            $table->string("customer_name");
+            $table->unsignedBigInteger('groups_id')->nullable();
             $table->foreign('groups_id')->references('id')->on('groups');
             $table->string("mobile_no");
             $table->string("email");
@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string("billing_address");
             $table->string("shipping_address");
             $table->string("status");
-
             $table->timestamps();
         });
     }

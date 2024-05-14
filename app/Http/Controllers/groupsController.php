@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Models\Category;
 use App\Models\groups;
 use App\Models\customers;
 use Illuminate\View\View;
@@ -18,9 +19,15 @@ class groupsController extends Controller
     public function index():View
     {
         $groups = groups::all();
-        return view ('groups.index')->with('groups', $groups);
-      // $groups = groups::withCount('items')->get();
-       //return view('groups.index', compact('groups'));
+        $categories = Category::all();
+        $ProductCount = groups::select('groups.id','groups.groupName')
+        ->leftJoin('customers', 'groups.id', '=', 'customers.groups_id')
+        ->select('groups.id','groups.groupName', customers::raw('COUNT(customers.id) as product_count'))
+        ->groupBy('groups.id','groups.groupName')
+        ->get();
+        return view ('customers.index',compact('groups','ProductCount','categories'));
+
+
     }
 
     /**
@@ -60,7 +67,7 @@ class groupsController extends Controller
     public function edit($id): View
     {
         $groups = groups::find($id);
-         return view('groups.edit')->with('groups', $groups);
+         return view('groups.edit',compact('groups'));
     }
 
     /**

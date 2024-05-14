@@ -12,7 +12,7 @@ class customers extends Model
 {
     protected $table = 'customers';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'mobile_no','email','gst_no','billing_address','shipping_address','status'];
+    protected $fillable = ['customer_name','groups_id','mobile_no','email','gst_no','billing_address','shipping_address','status'];
 
     use HasFactory;
     public function groups()

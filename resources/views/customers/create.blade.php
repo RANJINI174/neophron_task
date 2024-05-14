@@ -7,8 +7,19 @@
 
       <form action="{{ url('customers') }}" method="post">
         {!! csrf_field() !!}
-        <label>Name</label></br>
-        <input type="text" name="name" id="name" class="form-control"></br>
+        <label>customer_name</label></br>
+        <input type="text" name="customer_name" id="customer_name" class="form-control"></br>
+        <div class="form-group row ">
+            <label for="groups_id" >groups_id</label>
+                <div class="form-control ">
+                     <select class="form-control " id="groups_id" name="groups_id" required focus>
+                     @foreach ($groups as $item)
+                         <option value="{{ $item->id }}"  selected>{{ $item->groupName }}</option>
+                         @endforeach
+                         <option value="Select categoy" disabled selected>Select Group</option>
+                     </select>
+                </div>
+       </div>
         <label>mobile_no</label></br>
         <input type="text" name="mobile_no" id="mobile_no" class="form-control"></br>
         <label>Email</label></br>

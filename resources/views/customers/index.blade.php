@@ -40,14 +40,14 @@
                                 <thead>
                                     <tr>
                                         <th>s.no</th>
-                                        <th>name</th>
-                                        {{-- <th>groups_id</th> --}}
+                                        <th>customer_name</th>
+                                         <th>groups_id</th>
                                         <th>mobile_no</th>
                                         <th>email</th>
                                         <th>gst_no</th>
                                         <th>billing_address</th>
                                         <th>shipping_address</th>
-                                        <th>status</th>
+                                        {{-- <th>status</th> --}}
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -55,14 +55,21 @@
                                 @foreach($customers as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        {{-- <td>{{ $item->groups_id}}</td> --}}
+                                        <td>{{ $item->customer_name }}</td>
+                                        <td>
+                                            @foreach($groups as $groups)
+                                                @if ($groups->id == $item->groups_id)
+                                                    {{ $group->groupName }}
+
+                                                @endif
+                                            @endforeach
+                                        </td>
                                         <td>{{ $item->mobile_no}}</td>
                                         <td>{{ $item->email}}</td>
                                         <td>{{ $item->gst_no }}</td>
                                         <td>{{ $item->billing_address }}</td>
                                         <td>{{ $item->shipping_address }}</td>
-                                        <td>{{ $item->status }}</td>
+                                        {{-- <td>{{ $item->status }}</td> --}}
                                         {{-- <td>{{ $item->groups->groups }}</td> --}}
 
                                         <td>
