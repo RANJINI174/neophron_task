@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-           $table->unsignedBigInteger('group_id')->nullable();
-            $table->foreign('group_id')->references('id')->on('groups');
+           $table->unsignedBigInteger('groups_id')->nullable();
+            $table->foreign('groups_id')->references('id')->on('groups');
             $table->string("mobile_no");
             $table->string("email");
             $table->string("gst_no");

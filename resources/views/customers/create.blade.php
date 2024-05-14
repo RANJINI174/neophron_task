@@ -9,31 +9,26 @@
         {!! csrf_field() !!}
         <label>Name</label></br>
         <input type="text" name="name" id="name" class="form-control"></br>
-        <label>Group</label></br>
-        <input type="text" name="Group" id="Group" class="form-control"></br>
-        <label>Mobile_No</label></br>
-        <input type="text" name="Mobile_No" id="Mobile_No" class="form-control"></br>
-        <label>Email id</label></br>
-        <input type="text" name="Email id" id="Email id" class="form-control"></br>
-        <label>GST No</label></br>
-        <input type="text" name="GST No" id="GST No" class="form-control"></br>
-        <label>Billing Address</label></br>
-        <input type="text" name="Billing Address" id="Billing Address" class="form-control"></br>
-        <label>Shipping Address</label></br>
-        <input type="text" name="Shipping Address" id="Shipping Address" class="form-control"></br>
-        <label>Status</label></br>
-        <input type="text" name="Status" id="Status" class="form-control"></br>
+        <label>mobile_no</label></br>
+        <input type="text" name="mobile_no" id="mobile_no" class="form-control"></br>
+        <label>Email</label></br>
+        <input type="text" name="email" id="Email" class="form-control"></br>
+        <label>GST_No</label></br>
+        <input type="text" name="gst_no" id="gst_no" class="form-control"></br>
+        <label>Billing address</label></br>
+        <input type="text" name="billing_address" id="Billing address" class="form-control"></br>
+        <label>Shipping address</label></br>
+        <input type="text" name="shipping_address" id="Shipping address" class="form-control"></br>
+        {{-- <label>status</label></br> --}}
+       {{-- / <input type="text" name="status" id="status" class="form-control"></br> --}}
 
-        <div class="form-group">
+        <label for="add">Status:</label><br>
+        <select name="status"class="form-control">
+      <option value="1" {{ $status ? 'selected' : '' }}>Active</option>
+      <option value="0" {{ $status ? '' : 'selected' }}>Inactive</option>
+  </select>
+      </div>
 
-            <label for="groups_id">Category</label>
-            <select name="groups_id" id="groups_id" class="form-control">
-
-                @foreach($groups as $item)
-                    <option value="{{ $item->id }}">{{ $item->groups }}</option>
-                @endforeach
-            </select>
-        </div>
         <input type="submit" value="Save" class="btn btn-success"></br>
 
 

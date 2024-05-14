@@ -28,7 +28,7 @@
                                     <p> {{ $item->groups }}</p>
                                     @endforeach
                                   </a>
-                                  <a class="dropdown-item" href="{{ url('groups') }}">add categries</a></li>
+                                  <a class="dropdown-item" href="{{ url('groups') }}">add groups</a></li>
                                 </ul>
                               </div>
 
@@ -40,14 +40,14 @@
                                 <thead>
                                     <tr>
                                         <th>s.no</th>
-                                        <th>Name</th>
-                                        <th>Group</th>
-                                        <th>Mobile_no</th>
-                                        <th>Email id</th>
-                                        <th>GST No</th>
-                                        <th>Billing Address</th>
-                                        <th>Shipping Address</th>
-                                        <th>Status</th>
+                                        <th>name</th>
+                                        {{-- <th>groups_id</th> --}}
+                                        <th>mobile_no</th>
+                                        <th>email</th>
+                                        <th>gst_no</th>
+                                        <th>billing_address</th>
+                                        <th>shipping_address</th>
+                                        <th>status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -56,13 +56,14 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->Group}}</td>
-                                        <td>{{ $item->Mobile_no}}</td>
-                                        <td>{{ $item->GST No }}</td>
-                                        <td>{{ $item->Billing Address }}</td>
-                                        <td>{{ $item->Shipping Address }}</td>
-                                        <td>{{ $item->Status }}</td>
-                                        <td>{{ $item->groups->groups }}</td>
+                                        {{-- <td>{{ $item->groups_id}}</td> --}}
+                                        <td>{{ $item->mobile_no}}</td>
+                                        <td>{{ $item->email}}</td>
+                                        <td>{{ $item->gst_no }}</td>
+                                        <td>{{ $item->billing_address }}</td>
+                                        <td>{{ $item->shipping_address }}</td>
+                                        <td>{{ $item->status }}</td>
+                                        {{-- <td>{{ $item->groups->groups }}</td> --}}
 
                                         <td>
                                             <a href="{{ url('/customers/' . $item->id) }}" title="View customers"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

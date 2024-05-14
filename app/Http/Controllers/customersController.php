@@ -9,6 +9,8 @@ use App\Models\customers;
 use Illuminate\View\View;
 use App\Models\groups;
 
+
+
 class customersController extends Controller
 {
     /**
@@ -36,8 +38,10 @@ class customersController extends Controller
     {
         $customers =customers::all();
         $groups = groups::all();
+        $status =true;
+        //$status = true;
         //return view('customers.create')->with('groups',$groups);
-        return view('customers.create',compact('customers', 'groups'));
+        return view('customers.create',compact('customers', 'groups','status'));
     }
 
 
@@ -46,10 +50,16 @@ class customersController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $input = $request->all();
-        customers::create($input);
-        //groups::create($input);
-        return redirect('customers')->with('flash_message', 'customers Addedd!');
+       // $request->validate([
+           // 'Name'=>'required'
+        // ]);
+        //$input = $request->all();
+        //customers::create($input);
+       // return redirect('customers')->with('flash_message', 'customers Addedd!');
+       $input = $request->all();
+      // $input['groups_id'] = $request->input('groups_id'); // Include groups_id from the request
+       customers::create($input);
+       return redirect('customers')->with('flash_message', 'customers Addedd!');
     }
 
     /**
@@ -73,7 +83,8 @@ class customersController extends Controller
         */
         $customers = customers::findOrFail($id);
         $groups = groups::all();
-        return view('customers.edit',compact('customers', 'groups'));
+        $status =true;
+        return view('customers.edit',compact('customers', 'groups','status'));
 
 
     }

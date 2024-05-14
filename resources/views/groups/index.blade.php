@@ -25,7 +25,7 @@
                                         <th>groupName</th>
                                         <th>groupCode</th>
 
-                                        <th>No. of Items</th>
+                                        
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -38,9 +38,10 @@
                                         <td>{{ $item->groups  }}</td>   --> --}}
 
                                         <td>{{ $item + 1 }}</td>
-                                        <td>{{ $groups->groups }}</td>
-                                        <td>{{ $groups->groups }}</td>
-                                        <td>{{ count($groups->sports) }}</td>
+                                        <td>{{ $groups->groupName }}</td>
+                                        <td>{{ $groups->groupCode }}</td>
+                                         {{-- <td>{{ $groups->groups_count }}</td> --}}
+                                         {{-- <td>{{ count($groups->customers) }}</td> --}}
                                         <td>
                                             <a href="{{ url('/groups/' . $groups->id) }}" title="View groups "><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/groups/' . $groups->id . '/edit') }}" title="Edit groups "><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

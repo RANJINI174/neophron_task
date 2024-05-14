@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\groups;
+//use App\Models\customers;
 
-class Sports extends Model
+
+class customers extends Model
 {
     protected $table = 'customers';
     protected $primaryKey = 'id';
-    protected $fillable = ['Name', 'Group', 'Mobile_no','Email id','GST No','Billing address','Shipping address','Status'];
+    protected $fillable = ['name', 'mobile_no','email','gst_no','billing_address','shipping_address','status'];
 
     use HasFactory;
     public function groups()
