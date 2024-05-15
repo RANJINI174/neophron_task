@@ -87,7 +87,7 @@ class customersController extends Controller
      */
     public function update(Request $request, string $id): RedirectResponse
     {
-        $customer = customers::find($id);
+        $customers = customers::find($id);
 
         $input = $request->all();
         $customers->update($input);
