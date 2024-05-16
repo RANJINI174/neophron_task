@@ -15,7 +15,7 @@ class registerController extends Controller
             [
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed'
             //'confirm_password'=>'required|Confirmed'
             ]);
             //$hashedPassword = Hash::make($request->input('password'));

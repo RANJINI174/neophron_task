@@ -55,8 +55,9 @@
 <body>
 
 <div class="container">
-    <h2>Login</h2>
+    <h2>Login/sign in</h2>
     <form action="authendicate" method="post">
+        @csrf
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
@@ -68,7 +69,7 @@
         <div class="form-group">
             <button type="submit">Login</button>
         </div>
-        @csrf
+
     </form>
 </div>
 
