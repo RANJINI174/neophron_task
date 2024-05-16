@@ -24,26 +24,26 @@
 
                                         <th>groupName</th>
                                         <th>groupCode</th>
-                                        <th>Group Members</th>
-
+                                        {{-- <th>Group Members</th> --}}
+                                        <th>No. of Items</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($productCount as $groups)
-                                {{-- @foreach($groups as $item => $groups) --}}
+                                {{-- @foreach($productCount as $groups) --}}
+                                  @foreach($groups as $item => $groups)
                                     <tr>
-                                       <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $groups->groupsName  }}</td>
-                                        <td>{{ $groups->groupCode  }}</td>
-                                        <td>{{ $group->product_count }}</td>
-                                        {{-- <td>{{ $item + 1 }}</td> --}}
-                                        {{-- <td>{{ $groups->groupName }}</td> --}}
-                                        {{-- <td>{{ $groups->groupCode }}</td> --}}
-                                         {{-- <td>{{ $groups->groups_count }}</td> --}}
-                                         {{-- <td>{{ count($groups->customers) }}</td> --}}
+                                        {{-- <td>{{ $loop->iteration }}</td> --}}
+                                         {{-- <td>{{ $groups->groupsName  }}</td> --}}
+                                         {{-- <td>{{ $groups->groupCode  }}</td> --}}
+                                         {{-- <td>{{ $group->product_count }}</td> --}}
+                                          <td>{{ $item + 1 }}</td>
+                                          <td>{{ $groups->groupName }}</td>
+                                          <td>{{ $groups->groupCode }}</td>
+                                           {{-- <td>{{ $groups->groups_count }}</td> --}}
+                                          <td>{{ count($groups->customer) }}</td>
                                         <td>
-                                            {{-- <a href="{{ url('/groups/' . $groups->id) }}" title="View groups "><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a> --}}
+                                             <a href="{{ url('/groups/' . $groups->id) }}" title="View groups "><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a> 
                                             <a href="{{ url('/groups/' . $groups->id . '/edit') }}" title="Edit groups "><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
                                             <form method="POST" action="{{ url('/groups' . '/' . $groups->id) }}" accept-charset="UTF-8" style="display:inline">

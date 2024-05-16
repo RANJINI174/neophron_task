@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Category;
 use App\Models\groups;
-use App\Models\customers;
+use App\Models\Customer;
 use Illuminate\View\View;
 
 
@@ -18,14 +18,17 @@ class groupsController extends Controller
      */
     public function index():View
     {
+        // $customers = Customer::all();
         $groups = groups::all();
         $categories = Category::all();
-        $ProductCount = groups::select('groups.id','groups.groupName')
-        ->leftJoin('customers', 'groups.id', '=', 'customers.groups_id')
-        ->select('groups.id','groups.groupName', customers::raw('COUNT(customers.id) as product_count'))
-        ->groupBy('groups.id','groups.groupName')
+         $ProductCount = groups::select('groups.id','groups.groupName')
+         ->leftJoin('customers', 'groups.id', '=', 'customers.groups_id')
+         ->select('groups.id','groups.groupName', Customer::raw('COUNT(customers.id) as product_count'))
+         ->groupBy('groups.id','groups.groupName')
         ->get();
-        return view ('customers.index',compact('groups','ProductCount','categories'));
+        return view ('customers.index', compact('groups', 'ProductCount', 'categories'));
+
+       //return view('groups.index', compact('customers', 'groups', 'categories'));
 
 
     }

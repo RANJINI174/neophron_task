@@ -5,34 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\customers;
+use App\Models\Customer;
 use Illuminate\View\View;
 use App\Models\groups;
-use App\Models\category;
+use App\Models\Category;
 
 
 
 class customersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index():View
-    {
-        $customers = customers::all();
-        $groups = groups::all();
-        $categories = Category::all();
-        return view ('customers.index',compact('customers','groups','categories'));
 
-    }
+    public function index(): View
+{
+    $customers = Customer::all();
+    $groups = groups::all();
+    $categories = Category::all();
+    return view('customers.index', compact('customers', 'groups', 'categories'));
+
+}
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create(): View
     {
-        $customers =customers::all();
+        $customers = Customer::all();
         $groups = groups::all();
         $status =true;
         //$status = true;
@@ -51,7 +47,7 @@ class customersController extends Controller
         // ]);
 
        $input = $request->all();
-       customers::create($input);
+       Customer::create($input);
        return redirect('customers')->with('flash_message', 'Items Addedd!');
     }
 
@@ -60,7 +56,7 @@ class customersController extends Controller
      */
     public function show(string $id): View
     {
-        $customers = customers::find($id);
+        $customers = Customer::find($id);
         return view('customers.show')->with('customers', $customers);
     }
 
@@ -74,7 +70,7 @@ class customersController extends Controller
         $groups = groups::all();
         return view('customers.create')->with('groups',$groups);
         */
-        $customers = customers::findOrFail($id);
+        $customers = Customer::findOrFail($id);
         $groups = groups::all();
         $status =true;
         return view('customers.edit',compact('customers', 'groups','status'));
@@ -87,7 +83,7 @@ class customersController extends Controller
      */
     public function update(Request $request, string $id): RedirectResponse
     {
-        $customers = customers::find($id);
+        $customers = Customer::find($id);
 
         $input = $request->all();
         $customers->update($input);
@@ -99,7 +95,7 @@ class customersController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        customers::destroy($id);
+        Customer::destroy($id);
         return redirect('customers')->with('flash_message', 'customers deleted!');
     }
 

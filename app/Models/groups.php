@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\customers;
+use App\Models\Customer;
 
 class groups extends Model
 {
@@ -13,8 +13,8 @@ class groups extends Model
     protected $fillable = ['groupName','groupCode'];
     use HasFactory;
 
-    public function customers()
+    public function Customer()
     {
-        return $this->hasMany(customers::class,'groups_id');
+        return $this->hasMany(Customer::class,'groups_id');
     }
 }

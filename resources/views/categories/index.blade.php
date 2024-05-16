@@ -21,7 +21,6 @@
                                 <thead>
                                     <tr>
                                         <th>s.no</th>
-
                                         <th>categories</th>
 
                                         <th>No. of Items</th>

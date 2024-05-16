@@ -9,8 +9,8 @@
         {!! csrf_field() !!}
         @method("PATCH")
         <input type="hidden" name="id" id="id" value="{{$customers->id}}" id="id" />
-        <label>name</label></br>
-        <input type="text" name="name" id="name" value="{{$customers->name}}" class="form-control"></br>
+        <label>customer_name</label></br>
+        <input type="text" name="customer_name" id="customer_name" value="{{$customers->customer_name}}" class="form-control"></br>
         {{-- <label>status_id</label></br> --}}
         {{-- <input type="text" name="status_id" id="status_id" value="{{$customers->status_id}}" class="form-control"></br> --}}
         <label>mobile_no</label></br>

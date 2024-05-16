@@ -8,7 +8,7 @@ use App\Models\groups;
 //use App\Models\customers;
 
 
-class customers extends Model
+class Customer extends Model
 {
     protected $table = 'customers';
     protected $primaryKey = 'id';
