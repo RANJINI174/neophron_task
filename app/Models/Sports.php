@@ -8,7 +8,7 @@ use App\Models\categories;
 
 class Sports extends Model
 {
-    protected $table = 'spots';
+    protected $table = 'sports';
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'description', 'price','quantity','categories_id'];
 

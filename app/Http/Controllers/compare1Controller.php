@@ -10,7 +10,7 @@ use App\Models\groups;
 use Illuminate\View\View;
 
 
-class compareController extends Controller
+class compare1Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,8 @@ class compareController extends Controller
         $customers = Customer::with('groups')->get();
         $groups = groups::with('customers')->get();
 
-        return view('customers.index1', compact('customers', 'groups'));
+       return view('customers.index1', compact('customers', 'groups'));
+        //return view('customers.create', compact('customers', 'groups'));
     }
 
     public function viewStores($groups_id)

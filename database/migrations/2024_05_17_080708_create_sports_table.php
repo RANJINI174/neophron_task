@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('spots', function (Blueprint $table) {
+        Schema::create('sports', function (Blueprint $table) {
             $table->id();
             $table->string("name");
             $table->string("description");
             $table->string("price");
             $table->string("quantity");
-            $table->string("categories_id");
+            // $table->string("categories_id");
             $table->unsignedBigInteger('categories_id')->nullable();
             $table->foreign('categories_id')->references('id')->on('categories');
             $table->timestamps();
@@ -29,10 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::dropIfExists('sports');
-        Schema::table('spots', function (Blueprint $table) {
-            $table->dropForeign(['categories_id']);
-            $table->dropColumn('categories_id');
-        });
+        Schema::dropIfExists('sports');
     }
 };

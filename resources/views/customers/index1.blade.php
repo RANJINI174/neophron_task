@@ -1,26 +1,26 @@
 <!--<select name="category_id">
-    @foreach($groups as $groups)
-        <option value="{{ $groups->id }}">{{ $groups->category_name }}</option>
+    @foreach($Groups as $Groups)
+        <option value="{{ $Groups->id }}">{{ $Groups->category_name }}</option>
     @endforeach
 </select>
 -->
 @section('content')
-<h1>Category: {{ $groups->groupsname }}</h1>
+<h1>Category: {{ $Groups->groupsname }}</h1>
 <table class="table table-hover">
     <thead>
       <tr>
       <th>No.</th>
         <th>name</th>
-        <th>email</th>
+        <th>groups_id</th>
 
       </tr>
     </thead>
     <tbody>
-    @foreach ($sports as $sports)
+    @foreach ($Customers as $Customers)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $sports->name }}</td>
-                                        <td>{{ $sports->email }}</td>
+                                        <td>{{ $Customers->name }}</td>
+                                        <td>{{ $Customers->groups_id }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

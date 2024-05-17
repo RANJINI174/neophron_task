@@ -5,24 +5,24 @@
   <div class="card-header">Contactus Page</div>
   <div class="card-body">
 
-      <form action="{{ url('customers/' .$customers->id) }}" method="post">
+      <form action="{{ url('customers/' .$Customers->id) }}" method="post">
         {!! csrf_field() !!}
         @method("PATCH")
-        <input type="hidden" name="id" id="id" value="{{$customers->id}}" id="id" />
+        <input type="hidden" name="id" id="id" value="{{$Customers->id}}" id="id" />
         <label>customer_name</label></br>
-        <input type="text" name="customer_name" id="customer_name" value="{{$customers->customer_name}}" class="form-control"></br>
+        <input type="text" name="customer_name" id="customer_name" value="{{$Customers->customer_name}}" class="form-control"></br>
         {{-- <label>status_id</label></br> --}}
         {{-- <input type="text" name="status_id" id="status_id" value="{{$customers->status_id}}" class="form-control"></br> --}}
         <label>mobile_no</label></br>
-        <input type="text" name="mobile_no" id="Mobile_no" value="{{$customers->mobile_no}}" class="form-control"></br>
+        <input type="text" name="mobile_no" id="Mobile_no" value="{{$Customers->mobile_no}}" class="form-control"></br>
         <label>email</label></br>
-        <input type="text" name="email" id="Email id" value="{{$customers->email}}" class="form-control"></br>
+        <input type="text" name="email" id="Email id" value="{{$Customers->email}}" class="form-control"></br>
         <label>gst_no</label></br>
-        <input type="text" name="gst_no" id="GST_No" value="{{$customers->gst_no}}" class="form-control"></br>
+        <input type="text" name="gst_no" id="GST_No" value="{{$Customers->gst_no}}" class="form-control"></br>
         <label>billing_address</label></br>
-        <input type="text" name="billing_address" id="Billing address" value="{{$customers->billing_address}}" class="form-control"></br>
+        <input type="text" name="billing_address" id="Billing address" value="{{$Customers->billing_address}}" class="form-control"></br>
         <label>shipping_address</label></br>
-        <input type="text" name="shipping_address" id="Shipping address" value="{{$customers->shipping_address}}" class="form-control"></br>
+        <input type="text" name="shipping_address" id="Shipping address" value="{{$Customers->shipping_address}}" class="form-control"></br>
          {{-- <label>status</label></br> --}}
          {{-- <input type="text" name="status" id="status" class="form-control"></br> --}}
          <div class="form-group row">

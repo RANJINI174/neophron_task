@@ -20,7 +20,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>s.no</th>
 
                                         <th>groupName</th>
                                         <th>groupCode</th>
@@ -31,22 +31,22 @@
                                 </thead>
                                 <tbody>
                                 {{-- @foreach($productCount as $groups) --}}
-                                  @foreach($groups as $item => $groups)
+                                  @foreach($Groups as $item => $Groups)
                                     <tr>
                                         {{-- <td>{{ $loop->iteration }}</td> --}}
                                          {{-- <td>{{ $groups->groupsName  }}</td> --}}
                                          {{-- <td>{{ $groups->groupCode  }}</td> --}}
                                          {{-- <td>{{ $group->product_count }}</td> --}}
                                           <td>{{ $item + 1 }}</td>
-                                          <td>{{ $groups->groupName }}</td>
-                                          <td>{{ $groups->groupCode }}</td>
+                                          <td>{{ $Groups->groupName }}</td>
+                                          <td>{{ $Groups->groupCode }}</td>
                                            {{-- <td>{{ $groups->groups_count }}</td> --}}
-                                          <td>{{ count($groups->customer) }}</td>
+                                          <td>{{ count($Groups->customer) }}</td>
                                         <td>
-                                             <a href="{{ url('/groups/' . $groups->id) }}" title="View groups "><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a> 
-                                            <a href="{{ url('/groups/' . $groups->id . '/edit') }}" title="Edit groups "><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                             <a href="{{ url('/groups/' . $Groups->id) }}" title="View groups "><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/groups/' . $Groups->id . '/edit') }}" title="Edit groups "><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                                            <form method="POST" action="{{ url('/groups' . '/' . $groups->id) }}" accept-charset="UTF-8" style="display:inline">
+                                            <form method="POST" action="{{ url('/groups' . '/' . $Groups->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete groups" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>

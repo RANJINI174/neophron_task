@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\Sports;
+use App\Models\Customers;
 use Illuminate\View\View;
-use App\Models\categories;
+use App\Models\Groups;
 
-class sportsController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,11 +23,12 @@ class sportsController extends Controller
         //return view ('sports.index')->with('sports', $sports);
 
 
-         $sports = Sports::with('categories')->get();
-        //    $categories = categories::all();
-        $categories = categories::with('sports')->get();
+         $Customers = Customers::with('Groups')->get();
+           $Groups = Groups::all();
+           $status =true;
+        // $Groups = Groups::with('Customers')->get();
 
-        return view('sports.index', compact('sports', 'categories'));
+        return view('customers.index', compact('Customers', 'Groups','status'));
     }
 
 
@@ -36,10 +37,11 @@ class sportsController extends Controller
      */
     public function create(): View
     {
-        $sports = Sports::all();
-        $categories = categories::all();
+        $Customers = Customers::all();
+        $Groups = Groups::all();
+        $status =true;
         //return view('sports.create')->with('categories',$categories);
-        return view('sports.create',compact('sports', 'categories'));
+        return view('customers.create',compact('Customers', 'Groups','status'));
     }
 
 
@@ -49,9 +51,9 @@ class sportsController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $input = $request->all();
-        Sports::create($input);
+        Customers::create($input);
         //categories::create($input);
-        return redirect('sports')->with('flash_message', 'Sports Addedd!');
+        return redirect('customers')->with('flash_message', 'Customers Addedd!');
     }
 
     /**
@@ -59,8 +61,8 @@ class sportsController extends Controller
      */
     public function show(string $id): View
     {
-        $sports = Sports::find($id);
-        return view('sports.show')->with('sports', $sports);
+        $Customers = Customers::find($id);
+        return view('customers.show')->with('Customers', $Customers);
     }
 
     /**
@@ -73,9 +75,10 @@ class sportsController extends Controller
         $categories = categories::all();
         return view('sports.create')->with('categories',$categories);
         */
-        $sports = Sports::findOrFail($id);
-        $categories = categories::all();
-        return view('sports.edit',compact('sports', 'categories'));
+        $Customers = Customers::findOrFail($id);
+        $Groups = Groups::all();
+        $status =true;
+        return view('customers.edit',compact('Customers', 'Groups','status'));
 
     }
 
@@ -84,10 +87,10 @@ class sportsController extends Controller
      */
     public function update(Request $request, string $id): RedirectResponse
     {
-        $sports = Sports::find($id);
+        $Customers = Customers::find($id);
         $input = $request->all();
-        $sports->update($input);
-        return redirect('sports')->with('flash_message', 'sports Updated!');
+        $Customers->update($input);
+        return redirect('customers')->with('flash_message', 'customers Updated!');
     }
 
     /**
@@ -95,17 +98,17 @@ class sportsController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        Sports::destroy($id);
-        return redirect('sports')->with('flash_message', 'Sports deleted!');
+        Customers::destroy($id);
+        return redirect('customers')->with('flash_message', 'Customers deleted!');
     }
 
 
-    public function index1($categories_id)
-    { return view('sports.welcome');
-    $categories = categories::find($id);
-    $sports = $categories->sports;
+    public function index1($groups_id)
+    { return view('Customers.welcome');
+    $Groups = Groups::find($id);
+    $Customers = $Groups->sports;
 
     ///return view('sports.index1',compact('sports','categories'));
-    return view('sports.index1')->with('sports', $sports);;
+    return view('customers.index1')->with('Customers', $Customers);;
 }
 }

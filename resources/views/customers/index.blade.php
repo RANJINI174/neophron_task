@@ -9,13 +9,20 @@
                     <div class="card-header">
                         <h2>customers App</h2>
                           </div>
-                        <div class="card-body">
-                          <a href="{{ url('/customers/create') }}" class="btn btn-success btn-sm" title="Add New Student">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                            </a>
+
+
+                            <div class="card-body">
+                                {{-- <a href="{{ route('customers.create') }}" class="btn btn-success btn-sm" title="Add New Customer"> --}}
+                                    {{-- <i class="fa fa-plus" aria-hidden="true"></i> Add New --}}
+                                {{-- </a> --}}
+
+                                <a href="{{ url('/customers/create') }}" class="btn btn-success btn-sm" title="Add New customers">
+                                   <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                                   </a>
+
                             <div class="dropdown float-end">
                                 <a class="btn btn-secondary dropdown-toggle" href="bootstrap.min.css" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                 categories
+                                 groups
                                 </a>
 
 
@@ -23,9 +30,9 @@
                                 <ul class="dropdown-menu">
                                 <tbody>
 
-                                    @foreach ($groups as $item)
+                                    @foreach ($Groups as $item)
                                     <li><a class="dropdown-item" href="{{url('groups/' . $item->id .'/store') }}">
-                                    <p> {{ $item->groups }}</p>
+                                    <p> {{ $item->Groups }}</p>
                                     @endforeach
                                   </a>
                                   <a class="dropdown-item" href="{{ url('groups') }}">add groups</a></li>
@@ -52,12 +59,12 @@
                                     </tr>
                                 </thead>
 
-                                 @foreach($customers as $item)
+                                 @foreach($Customers as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->customer_name }}</td>
                                         <td>
-                                            @foreach($groups as $group)
+                                            @foreach($Groups as $group)
                                                 @if ($group->id == $item->groups_id)
                                                     {{ $group->groupName }}
 
@@ -83,7 +90,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                             @endforeach 
+                             @endforeach
                                 </tbody>
                             </table>
                         </div>

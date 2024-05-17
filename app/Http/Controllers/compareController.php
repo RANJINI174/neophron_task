@@ -34,6 +34,3 @@ class compareController extends Controller
     return view('sports.index1', compact('sports','categories'));
 }
 }
-
-
-

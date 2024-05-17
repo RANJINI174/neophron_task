@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Customer;
+use App\Models\Customers;
 
-class groups extends Model
+class Groups extends Model
 {
     protected $table = 'groups';
     protected $primaryKey = 'id';
@@ -15,6 +15,6 @@ class groups extends Model
 
     public function Customer()
     {
-        return $this->hasMany(Customer::class,'groups_id');
+        return $this->hasMany(Customers::class,'groups_id');
     }
 }
