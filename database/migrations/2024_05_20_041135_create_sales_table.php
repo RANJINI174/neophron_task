@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->string("invoice_No");
-            $table->string("customer_id");
-            $table->string("total_price");
-            $table->string("quantity");
+            $table->string('invoice_no')->unique();
+            $table->unsignedBigInteger('customer_id')->nullable();
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->string('total_price',25);
             $table->timestamps();
         });
     }

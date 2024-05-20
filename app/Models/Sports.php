@@ -18,5 +18,6 @@ class Sports extends Model
         return $this->belongsTo(categories::class,'categories_id');
     }
 
+    
 }
 

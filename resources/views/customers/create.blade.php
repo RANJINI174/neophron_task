@@ -1,8 +1,8 @@
-@extends('customers.layout')
+@extends('layout.index')
 @section('content')
 
 <div class="card">
-  <div class="card-header">Sports Page</div>
+  <div class="card-header">customers Page</div>
   <div class="card-body">
 
       <form action="{{ url('customers') }}" method="post">

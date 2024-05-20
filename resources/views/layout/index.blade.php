@@ -43,6 +43,16 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('auth/login') }}"><h5>login</h5></a>
             </li>
+            <li class="nav-item dropdown">
+
+                <button class="btn btn-dark btn-lg dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Customers
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                      <li><a class="dropdown-item" href="{{ url('/customers') }}">Customer Details</a></li>
+                      <li><a class="dropdown-item" href="{{ url('/groups') }}">Group Details</a></li>
+                  </ul>
+              </li>
             </ul>
         </div>
    </header>

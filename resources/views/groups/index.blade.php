@@ -1,4 +1,4 @@
-@extends('groups.layout')
+@extends('layout.index')
 @section('content')
 
     <div class="container">

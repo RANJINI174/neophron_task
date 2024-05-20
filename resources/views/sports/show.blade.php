@@ -1,4 +1,4 @@
-@extends('sports.layout')
+@extends('layout.index')
 @section('content')
 
 

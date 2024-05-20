@@ -1,4 +1,4 @@
-@extends('sports.layout')
+@extends('layout.index')
 @section('content')
 
     <div class="container">
@@ -56,7 +56,7 @@
                                         <td>{{ $item->description }}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->quantity }}</td>
-                                       <td>{{ $item->categories->categories }}</td> 
+                                       <td>{{ $item->categories->categories }}</td>
 
                                         <td>
                                             <a href="{{ url('/sports/' . $item->id) }}" title="View Sports"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
