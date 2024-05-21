@@ -24,11 +24,13 @@
                                 <tbody>
 
                                     @foreach ($categories as $item)
-                                    <li><a class="dropdown-item" href="{{url('categories/' . $item->id .'/store') }}">
-                                    <p> {{ $item->categories }}</p>
+                                    <li>
+                                        <a class="dropdown-item" href="{{url('categories/' . $item->id .'/sports') }}">
+                                            {{-- <a class="dropdown-item" href="{{ route('categories.show', $item->id) }}"> --}}
+                                        <p> {{ $item->categories }}</p>
                                     @endforeach
-                                  </a>
-                                  <a class="dropdown-item" href="{{ url('categories') }}">add categries</a></li>
+                                  </a></li>
+                                 <li> <a class="dropdown-item" href="{{ url('categories') }}">add categries</a></li>
                                 </ul>
                               </div>
 
@@ -56,8 +58,16 @@
                                         <td>{{ $item->description }}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->quantity }}</td>
-                                       <td>{{ $item->categories->categories }}</td>
+                                         {{-- <td>{{ $item->categories->categories }}</td>  --}}
+                                        <td>
+                                         @foreach($categories as $cat)
+                                         @if ($cat->id == $item->categories_id)
+                                          {{ $cat->categories }}
 
+                                        @endif
+                                    @endforeach
+
+                                      </td>
                                         <td>
                                             <a href="{{ url('/sports/' . $item->id) }}" title="View Sports"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/sports/' . $item->id . '/edit') }}" title="Edit Sports"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

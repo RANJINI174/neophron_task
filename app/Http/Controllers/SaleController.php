@@ -20,9 +20,10 @@ class SaleController extends Controller
     {
 
         $sales = Sales::all();
+       // $sales = Sales::with('customers')->get();
         $categories = Category::all();
-       // $customers = Customers::all();
-        return view ('sales.index',compact('sales','categories'));
+        $customers = Customers::all();
+        return view ('sales.index',compact('sales','categories','customers'));
 
 
         // $Sales = Sales::with('items')->get();

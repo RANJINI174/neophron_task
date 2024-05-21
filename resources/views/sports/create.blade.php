@@ -1,4 +1,4 @@
-@extends('layout.index')
+@extends('sports.layout')
 @section('content')
 
 <div class="card">

@@ -34,14 +34,17 @@
         <div class="collapse navbar-collapse  justify-content-end px-4" id="collapsibleNavbar">
             <ul class="navbar-nav" >
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('sports') }}"><h5>Home</h5></a>
+                <a class="nav-link" href="{{ url('sales') }}"><h5>sales</h5></a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('saleItem') }}"><h5>saleItem</h5></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{url('register')}}"><h5>Register</h5></a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('auth/login') }}"><h5>login</h5></a>
+                <a class="nav-link" href="{{ url('login') }}"><h5>login</h5></a>
             </li>
             <li class="nav-item dropdown">
 

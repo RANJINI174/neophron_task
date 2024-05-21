@@ -18,13 +18,13 @@
 <body>
 <div class="container mt-3">
   <h2>Your Product</h2>
-  <form action="{{ url('saleItem') }}" method="post">
+  <form action="{{ url('saleItems') }}" method="post">
     @csrf
     <div class="form-group row">
      <label for="role" >Invoice Number</label>
          <div class="form-control ">
               <select class="form-control" id="sale_id" name="sale_id" required focus>
-              @foreach ($sales as $sale)
+              @foreach ($Sales as $sale)
                   <option value="{{ $sale->id }}"  selected>{{ $sale->invoice_no }}</option>
                   @endforeach
                   <option value="Select categoy" disabled selected>Select Invoice No</option>
@@ -35,8 +35,8 @@
      <label for="role" >Product Name</label>
          <div class="form-control ">
               <select class="form-control" id="item_id" name="item_id" required focus>
-              @foreach ($stores as $store)
-                  <option value="{{ $store->id }}"  selected>{{ $store->name }}</option>
+              @foreach ($Sports as $sports)
+                  <option value="{{ $sports->id }}"  selected>{{ $sports->name }}</option>
                   @endforeach
                   <option value="Select categoy" disabled selected>Select product Name</option>
               </select>
@@ -50,12 +50,15 @@
       <label for="unit_price">Unit price:</label>
       <input type="number" class="form-control" id="unit_price" placeholder="Enter unit price" name="unit_price">
     </div>
-
+    <div class="mb-3 mt-3">
+        <label for="total_price">total_price:</label>
+        <input type="number" class="form-control" id="total_price" placeholder="Enter unit price" name="total_price">
+      </div>
 
 
 
    <input type="submit" class="btn btn-primary" name="" value="submit" >
-  {{-- </form><a href="{{ url('store') }}"><button class='btn btn-primary float-end '>Back to home</button></a> --}}
+  {{-- </form><a href="{{ url('sports') }}"><button class='btn btn-primary float-end '>Back to home</button></a> --}}
 
 </div>
 </body>

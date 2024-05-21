@@ -7,6 +7,7 @@ use App\Http\Controllers\categoriesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\groupsController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\SaleItemController;
 use App\Http\Controllers\Auth\registerController;
 use App\Http\Controllers\Auth\loginController;
 
@@ -30,4 +31,4 @@ Route::post('authendicate',[loginController::class,'authendicate']);
 //Route::get('logout',[loginController::class.'logout']);
 Route::get('logout',[loginController::class, 'logout']);
 Route::resource("/sales", SaleController::class);
-Route::resource("/salItems", SaleItemController::class);
+Route::resource("/saleItems", SaleItemController::class);

@@ -1,15 +1,15 @@
-@extends('sports.layout')
+@extends('layout.index')
 @section('content')
 <body>
 
                  <div>
                  <div class="container mt-3 ">
 
-                <!-- <a href="{{ url('/saleItem/create') }}"><button type='submit'class='btn btn-primary'>Click to add</button></a> -->
+                 <a href="{{ url('/saleItems/create') }}"><button type='submit'class='btn btn-primary'>Add New</button></a>
 
 
              <h2>Sale Items details</h2>
-              <p>Here the details of the Sale Items</p>
+              {{-- <p>Here the details of the Sale Items</p> --}}
               <table class="table table-hover ">
                 <thead>
                   <tr>
@@ -23,7 +23,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                @foreach($sale_items as $item)
+                @foreach($SaleItems as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
 
@@ -34,9 +34,9 @@
                                                  @endif
                                                  @endforeach
                                                 </td>
-                                                    <td> @foreach ($stores as $store)
-                                                    @if ($store->id == $item->item_id)
-                                                 {{ $store->name }}
+                                                    <td> @foreach ($Sports as $sport)
+                                                    @if ($sport->id == $item->item_id)
+                                                 {{ $sport->name }}
                                                  @endif
                                                  @endforeach </td>
                                                     <td>{{ $item->quantity }}</td>
@@ -47,10 +47,10 @@
 
 
                                                     <td>
-                                                       
-                                                        <a href="{{ url('/saleItem/' . $item->id . '/edit') }}" title="Edit Item"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                                                        <form method="POST" action="{{ url('/saleItem' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                        <a href="{{ url('/saleItems/' . $item->id . '/edit') }}" title="Edit Item"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                                                        <form method="POST" action="{{ url('/saleItems' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                             {{ method_field('DELETE') }}
                                                             {{ csrf_field() }}
                                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete Item" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>

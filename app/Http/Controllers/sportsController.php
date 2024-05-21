@@ -24,10 +24,10 @@ class sportsController extends Controller
 
 
          $sports = Sports::with('categories')->get();
-        //    $categories = categories::all();
-        $categories = categories::with('sports')->get();
+           $categories = categories::all();
+        // $categories = categories::with('sports')->get();
 
-        return view('sports.index', compact('sports', 'categories'));
+        return view('sports.index', compact('sports','categories'));
     }
 
 

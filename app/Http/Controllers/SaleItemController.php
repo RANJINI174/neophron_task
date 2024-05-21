@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-///use App\Models\Category;
+use App\Models\categories;
 use App\Models\SaleItems;
+use App\Models\Customers;
+use App\Models\Sports;
 use App\Models\Sales;
 use Illuminate\View\View;
 
 
-class groupsController extends Controller
+class SaleItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,24 +21,23 @@ class groupsController extends Controller
     public function index():View
     {
 
-        $Groups = Groups::all();
-        return view ('groups.index')->with('Groups', $Groups);
+        // $SaleItems = SaleItems::all();
+        // return view ('saleItems.index')->with('SaleItems', $SaleItems);
 
 
+        $sales = Sales::all();
+        $SaleItems = SaleItems::all();
+        $categories = categories::all();
+        $customers = Customers::all();
+        $Sports = Sports::all();
+        return view ('saleItems.index',compact('SaleItems','sales','customers','Sports','categories'));
 
 
         // $customers = Customer::all();
         // $groups = groups::all();
         // $categories = Category::all();
 
-        //  $ProductCount = groups::select('groups.id','groups.groupName')
-        //  ->leftJoin('customers', 'groups.id', '=', 'customers.groups_id')
-        //  ->select('groups.id','groups.groupName', Customer::raw('COUNT(customers.id) as product_count'))
-        //  ->groupBy('groups.id','groups.groupName')
-        // ->get();
-       // return view ('customers.index', compact('groups', 'ProductCount', 'categories'));
 
-    //    return view('groups.index', compact('customers', 'groups', 'categories'));
 
 
     }
@@ -46,9 +47,12 @@ class groupsController extends Controller
      */
     public function create(): View
     {
-       // return view('customers.add_groups');
-        $Groups = Groups::all();
-        return view('groups.create')->with('Groups',$Groups);
+
+        $Sports = Sports::all();
+        $categories = categories::all();
+        $Sales = Sales::all();
+
+        return view('saleItems.create',compact('Sports','categories','Sales'));
     }
 
     /**
@@ -57,8 +61,8 @@ class groupsController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $input = $request->all();
-        Groups::create($input);
-        return redirect('groups')->with('flash_message', 'groups Addedd!');
+        SaleItems::create($input);
+        return redirect('saleItems')->with('flash_message', 'groups Addedd!');
     }
 
     /**
@@ -66,8 +70,8 @@ class groupsController extends Controller
      */
     public function show(string $id): View
     {
-        $Groups = Groups::find($id);
-        return view('groups.show')->with('Groups', $Groups);
+        // $Groups = Groups::find($id);
+        // return view('groups.show')->with('Groups', $Groups);
 
 
     }
@@ -77,8 +81,10 @@ class groupsController extends Controller
      */
     public function edit($id): View
     {
-        $Groups = Groups::find($id);
-         return view('groups.edit',compact('Groups'));
+        $Sports = Sports::all();
+        $SaleItems = SaleItems::findOrFail($id);
+        $categories = categories::all();
+        return view('saleItems.edit',compact('SaleItems','categories','Sports'));
     }
 
     /**
@@ -86,18 +92,18 @@ class groupsController extends Controller
      */
     public function update(Request $request, string $id): RedirectResponse
     {
-        $Groups= Groups::find($id);
+        $SaleItems= SaleItems::find($id);
         $input = $request->all();
-        $Groups->update($input);
-        return redirect('groups')->with('flash_message', 'Groups Updated!');
+        $SaleItems->update($input);
+        return redirect('saleItems')->with('flash_message', 'SaleItems Updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(string $id)
     {
-        Groups::destroy($id);
-        return redirect('groups')->with('flash_message', 'Groups deleted!');
+        SaleItems::destroy($id);
+        return redirect('saleItems')->with('flash_message', 'SaleItems deleted!');
     }
 }

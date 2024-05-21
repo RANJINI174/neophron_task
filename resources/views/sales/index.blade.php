@@ -1,4 +1,4 @@
-@extends('sports.layout')
+@extends('layout.index')
 @section('content')
 
     <div class="container">
@@ -35,9 +35,9 @@
                                         <td>{{ $loop->iteration }}</td>
 
                                         <td>
-                                            @foreach($sales as $sales)
-                                                @if ($sales->id == $item->customer_id)
-                                                    {{ $sales->customer_name }}
+                                            @foreach($customers as $customer)
+                                                @if ($customer->id == $item->customer_id)
+                                                    {{ $customer->customer_name }}
 
                                                 @endif
                                             @endforeach
