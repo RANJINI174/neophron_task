@@ -15,8 +15,10 @@
          <select name="groups_id" id="groups_id" class="form-control">
 
                  @foreach($Groups as $item)
-                     <option value="{{ $item->id }}">{{ $item->Groups }}</option>
+
+                     <option value="{{ $item->id }}">{{ $item->groupName }}</option>
                  @endforeach
+                  <option value="Select categories" disabled selected>Select Group</option>
              </select>
          </div>
          {{-- <label>groups_id</label></br> --}}

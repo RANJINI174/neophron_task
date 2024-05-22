@@ -6,7 +6,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Sales;
-use App\Models\Category;
+use App\Models\categories;
+use App\Models\Sports;
+use App\Models\Groups;
 use App\Models\Customers;
 use Illuminate\View\View;
 use App\Models\SaleItems;
@@ -21,7 +23,7 @@ class SaleController extends Controller
 
         $sales = Sales::all();
        // $sales = Sales::with('customers')->get();
-        $categories = Category::all();
+        $categories = categories::all();
         $customers = Customers::all();
         return view ('sales.index',compact('sales','categories','customers'));
 
@@ -66,8 +68,18 @@ class SaleController extends Controller
      */
     public function show(string $id): View
     {
-        $Sales = Sales::find($id);
-        return view('sales.show')->with('Sales', $Sales);
+        // $Sales = Sales::find($id);
+         $Groups = Groups::all();
+        // return view('sales.show',compact('Sales','Groups'));
+        $Sales = Sales::findOrFail($id);
+        $Customers = Customers::all();
+        $Sports = Sports::all();
+        $categories = categories::all();
+        $SaleItems = $Sales->SaleItems;
+
+        // $total_price_sum = $sale_items->sum('total_price');
+
+        return view('sales.show',compact('Groups','Sales','Customers','categories','SaleItems','Sports'));
     }
 
     /**
@@ -82,8 +94,9 @@ class SaleController extends Controller
         */
         $Sales = Sales::findOrFail($id);
         $SaleItems = SaleItems::all();
+        $Customers = Customers::all();
         //$status =true;
-        return view('sales.edit',compact('Sales', 'SaleItems'));
+        return view('sales.edit',compact('Sales', 'SaleItems','Customers'));
 
     }
 
@@ -104,7 +117,7 @@ class SaleController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         Sales::destroy($id);
-        return redirect('sales')->with('flash_message', 'Customers deleted!');
+        return redirect('sales')->with('flash_message', 'items deleted!');
     }
 
 
@@ -114,7 +127,7 @@ class SaleController extends Controller
     $Sales = $SaleItems->sports;
 
     ///return view('sports.index1',compact('sports','categories'));
-    return view('sales.index1')->with('Sales', $Customers);;
+    return view('sales.index1')->with('Sales', $Sales);;
 }
 
 public function generateInvoice(int $id){

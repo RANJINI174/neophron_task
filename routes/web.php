@@ -32,3 +32,4 @@ Route::post('authendicate',[loginController::class,'authendicate']);
 Route::get('logout',[loginController::class, 'logout']);
 Route::resource("/sales", SaleController::class);
 Route::resource("/saleItems", SaleItemController::class);
+// Route::get("/view_invoice", SaleItemController::class);

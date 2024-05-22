@@ -37,7 +37,7 @@
                 <a class="nav-link" href="{{ url('sales') }}"><h5>sales</h5></a>
             </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('saleItem') }}"><h5>saleItem</h5></a>
+                <a class="nav-link" href="{{ url('saleItems') }}"><h5>saleItems</h5></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{url('register')}}"><h5>Register</h5></a>

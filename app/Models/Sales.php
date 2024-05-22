@@ -12,9 +12,9 @@ class Sales extends Model
     protected $fillable = ['invoice_no', 'customer_id', 'total_price'];
 
     use HasFactory;
-     public function saleItem()
+     public function saleItems()
     {
-         return $this->hasMany(SaleItem::class,'sale_id');
+         return $this->hasMany(SaleItems::class,'sale_id');
 
      }
 

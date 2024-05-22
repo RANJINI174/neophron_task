@@ -1,3 +1,4 @@
+
     @if($errors->any())
     <ul>
     {{!!implode('',$errors->all('<li>:message</li>'))!!}}
