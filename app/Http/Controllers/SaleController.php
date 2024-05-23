@@ -12,6 +12,8 @@ use App\Models\Groups;
 use App\Models\Customers;
 use Illuminate\View\View;
 use App\Models\SaleItems;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Carbon;
 
 class SaleController extends Controller
 {
@@ -76,10 +78,9 @@ class SaleController extends Controller
         $Sports = Sports::all();
         $categories = categories::all();
         $SaleItems = $Sales->SaleItems;
+        $total_price_sum = $SaleItems->sum('total_price');
 
-        // $total_price_sum = $sale_items->sum('total_price');
-
-        return view('sales.show',compact('Groups','Sales','Customers','categories','SaleItems','Sports'));
+        return view('sales.show',compact('Groups','Sales','Customers','categories','SaleItems','Sports','total_price_sum'));
     }
 
     /**
@@ -121,8 +122,63 @@ class SaleController extends Controller
     }
 
 
+    public function admincart($id)
+    {
+        $sales = Sales::findOrFail($id);
+        $sports = Sports::all();
+        $categories = categories::all();
+        // $tax_details = TaxDetail::all();
+
+     return view('sales.admincart',compact('sports','categories','sales'));
+    }
+
+    public function show2(Request $request, $id){
+        // Validate the request data
+    $validated = $request->validate([
+        'sale_id' => 'required|exists:sales,id',
+        'item_id' => 'required|exists:sports,id',
+        'quantity' => 'required|integer',
+        'unit_price' => 'required|numeric',
+        // 'tax_id' => 'required|exists:tax_details,id',
+    ]);
+    $SaleItems = new SaleItems();
+    $SaleItems->sale_id = $validated['sale_id'];
+    $SaleItems->item_id = $validated['item_id'];
+    $SaleItems->quantity = $validated['quantity'];
+    $SaleItems->unit_price = $validated['unit_price'];
+    $SaleItems->total_price = $totalPrice;
+    $SaleItems->save();
+
+    $SaleItems = SaleItems::where('sale_id', $id)->get();
+
+
+    $total_price_sum = $SaleItems->sum('total_price');
+
+    $Sales = Sales::findOrFail($id);
+    $Sales->total_price = $total_price_sum;
+    $Sales->save();
+
+
+
+    $Sales = Sales::findOrFail($id);
+    $customers = Customers::all();
+    $sports = Sports::all();
+    // $tax_details = TaxDetail::all();
+    $categories = categories::all();
+
+
+
+
+
+    return view('sales.show', compact('Sales', 'customers', 'categories', 'sports', 'SaleItems', 'total_price_sum'));
+}
+
+
+
+
     public function index1($SaleItem_id)
-    { return view('Sales.welcome');
+    {
+        return view('Sales.welcome');
     $SaleItems = SaleItems::find($id);
     $Sales = $SaleItems->sports;
 
@@ -130,12 +186,38 @@ class SaleController extends Controller
     return view('sales.index1')->with('Sales', $Sales);;
 }
 
-public function generateInvoice(int $id){
-    $sales = Sales::findOrFail($id);
+public function viewInvoice(int $id){
+    $Sales = Sales::findOrFail($id);
 
-    $data = ['sales' => $sales];
+    $customers = Customers::all();
+    $sports = Sports::all();
+    $categories = categories::all();
+    $SaleItems = $Sales->SaleItems;
+
+    $total_price_sum = $SaleItems->sum('total_price');
+
+    return view('sales.invoice.view_invoice',compact('Sales','customers','categories','SaleItems','sports','total_price_sum'));
+}
+
+
+public function generateInvoice(int $id){
+    $Sales = Sales::findOrFail($id);
+    // $customers = Customers::all();
+    // $SaleItems = SaleItems::where('sale_id', $Sales->id)->get();
+    // $sports = Sports::all();
+   
+    $data = ['Sales' => $Sales];
     $todaydate = Carbon::now()->format('d-m-Y');
     $pdf = Pdf::loadView('sales.invoice.view_invoice', $data);
-    return $pdf->download('invoice'.$sales->id.'-'.$todaydate.'pdf');
+    return $pdf->download('invoice'.$Sales->id.'-'.$todaydate.'pdf');
+    // return view('sales.invoice.view_invoice',compact('Sales','customers','sports'));
+}
+
+
+
+
+public function show3(Request $request, $id){
+    $input = $request->all();
+    SaleItems::create($input);
 }
 }

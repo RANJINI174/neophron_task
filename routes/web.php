@@ -33,3 +33,9 @@ Route::get('logout',[loginController::class, 'logout']);
 Route::resource("/sales", SaleController::class);
 Route::resource("/saleItems", SaleItemController::class);
 // Route::get("/view_invoice", SaleItemController::class);
+
+
+Route::get('/admincart/{id}', [SaleController::class, 'admincart']);
+Route::post('/admincart/{id}/show2', [SaleController::class, 'show2']);
+Route::get('/admincart/invoice/{id}', [SaleController::class, 'viewInvoice']);
+Route::get('/admincart/invoice/{id}/generate', [SaleController::class, 'generateInvoice']);

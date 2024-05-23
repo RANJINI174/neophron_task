@@ -3,7 +3,8 @@
 
 
 <div class="card">
-  <div class="card-header">View Page</div>
+  <div class="card-header">Sales Details</div>
+
   <div class="card-body">
 
 
@@ -50,9 +51,6 @@
                                      @endif
                                      @endforeach
                                     </td>
-
-
-
                                         <td>{{ $item->quantity }}</td>
                                         <td>{{ $item->unit_price }}</td>
                                         <td>{{ $item->total_price }}</td>
@@ -60,12 +58,48 @@
                                     </tr>
                                @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr class="bg-secondary text-white">
+                                        <td colspan="4" class="text-right"><strong>Total:</strong></td>
+                                        <td>{{ $total_price_sum }}</td>
+                                    </tr>
 
+    </table>
 
-</table>
-
-
-
+    <a href="{{ url('/admincart/invoice/'. $Sales->id) }}"><button type='submit' target='_blank'class='btn btn-danger float-end mx-1'>View Invoice</button></a>
+    <a href="{{ url('/admincart/invoice/'. $Sales->id.'/generate') }}"><button type='submit' class='btn btn-warning float-end mx-1'>Download Invoice</button></a>
  {{-- </body> --}}
 
  @endsection
+ @section('styles')
+ <style>
+   @media print {
+     body * {
+       visibility: hidden;
+     }
+     .card, .card * {
+       visibility: visible;
+     }
+     .card {
+       position: absolute;
+       left: 0;
+       top: 0;
+       width: 100%;
+       margin: 0;
+       padding: 0;
+     }
+     .card-header {
+       text-align: center;
+     }
+     .card-header::before {
+       content: url('path_to_your_logo.png'); /* Add your logo path here */
+       display: block;
+       margin-bottom: 10px;
+     }
+     .card-footer {
+       display: none; /* Hide elements that are not needed in print */
+     }
+   }
+ </style>
+ @endsection
+
