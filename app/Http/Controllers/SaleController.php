@@ -12,6 +12,8 @@ use App\Models\Groups;
 use App\Models\Customers;
 use Illuminate\View\View;
 use App\Models\SaleItems;
+use App\Models\TaxDetails;
+
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Carbon;
 
@@ -127,9 +129,9 @@ class SaleController extends Controller
         $sales = Sales::findOrFail($id);
         $sports = Sports::all();
         $categories = categories::all();
-        // $tax_details = TaxDetail::all();
+        $tax_details = TaxDetails::all();
 
-     return view('sales.admincart',compact('sports','categories','sales'));
+     return view('sales.admincard',compact('sports','categories','sales','tax_details'));
     }
 
     public function show2(Request $request, $id){
@@ -139,14 +141,25 @@ class SaleController extends Controller
         'item_id' => 'required|exists:sports,id',
         'quantity' => 'required|integer',
         'unit_price' => 'required|numeric',
-        // 'tax_id' => 'required|exists:tax_details,id',
+        'tax_id' => 'required|exists:tax_details,id',
     ]);
+
+    $taxDetails = TaxDetails::find($validated['tax_id']);
+    $taxPercentage = $taxDetails->tax_percentage;
+
+
+    $unitPrice = $validated['unit_price'];
+    $quantity = $validated['quantity'];
+    $taxAmount = ($unitPrice * $quantity) * ($taxPercentage / 100);
+    $totalPrice = ($unitPrice * $quantity) + $taxAmount;
+
     $SaleItems = new SaleItems();
     $SaleItems->sale_id = $validated['sale_id'];
     $SaleItems->item_id = $validated['item_id'];
     $SaleItems->quantity = $validated['quantity'];
     $SaleItems->unit_price = $validated['unit_price'];
-    $SaleItems->total_price = $totalPrice;
+    // $SaleItems->total_price = $totalPrice;
+     $SaleItems->total_price = $totalPrice;
     $SaleItems->save();
 
     $SaleItems = SaleItems::where('sale_id', $id)->get();
@@ -161,19 +174,17 @@ class SaleController extends Controller
 
 
     $Sales = Sales::findOrFail($id);
-    $customers = Customers::all();
+    $Customers = Customers::all();
     $sports = Sports::all();
-    // $tax_details = TaxDetail::all();
+    $tax_details = TaxDetails::all();
     $categories = categories::all();
 
 
 
 
 
-    return view('sales.show', compact('Sales', 'customers', 'categories', 'sports', 'SaleItems', 'total_price_sum'));
+    return view('sales.show', compact('Sales', 'Customers', 'categories', 'sports', 'SaleItems', 'total_price_sum','tax_details'));
 }
-
-
 
 
     public function index1($SaleItem_id)
@@ -189,29 +200,39 @@ class SaleController extends Controller
 public function viewInvoice(int $id){
     $Sales = Sales::findOrFail($id);
 
-    $customers = Customers::all();
+    $Customers = Customers::all();
     $sports = Sports::all();
     $categories = categories::all();
     $SaleItems = $Sales->SaleItems;
 
     $total_price_sum = $SaleItems->sum('total_price');
 
-    return view('sales.invoice.view_invoice',compact('Sales','customers','categories','SaleItems','sports','total_price_sum'));
+    return view('sales.invoice.view_invoice',compact('Sales','Customers','categories','SaleItems','sports','total_price_sum'));
 }
 
 
 public function generateInvoice(int $id){
     $Sales = Sales::findOrFail($id);
-    // $customers = Customers::all();
-    // $SaleItems = SaleItems::where('sale_id', $Sales->id)->get();
-    // $sports = Sports::all();
-   
-    $data = ['Sales' => $Sales];
+    $customers = Customers::all();
+    $sports = Sports::all();
+    $categories = categories::all();
+    $SaleItems = $Sales->SaleItems;
+    $total_price_sum = $SaleItems->sum('total_price');
+
+    $data = [
+        'Sales' => $Sales,
+        'customers' => $customers,
+        'sports' => $sports,
+        'categories' => $categories,
+        'SaleItems' => $SaleItems,
+        'total_price_sum' => $total_price_sum
+    ];
+
     $todaydate = Carbon::now()->format('d-m-Y');
     $pdf = Pdf::loadView('sales.invoice.view_invoice', $data);
-    return $pdf->download('invoice'.$Sales->id.'-'.$todaydate.'pdf');
-    // return view('sales.invoice.view_invoice',compact('Sales','customers','sports'));
+    return $pdf->download('invoice'.$Sales->id.'-'.$todaydate.'.pdf');
 }
+
 
 
 

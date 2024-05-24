@@ -10,6 +10,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleItemController;
 use App\Http\Controllers\Auth\registerController;
 use App\Http\Controllers\Auth\loginController;
+use App\Http\Controllers\TaxController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,3 +40,4 @@ Route::get('/admincart/{id}', [SaleController::class, 'admincart']);
 Route::post('/admincart/{id}/show2', [SaleController::class, 'show2']);
 Route::get('/admincart/invoice/{id}', [SaleController::class, 'viewInvoice']);
 Route::get('/admincart/invoice/{id}/generate', [SaleController::class, 'generateInvoice']);
+Route::resource("/tax", TaxController::class);

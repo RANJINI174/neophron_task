@@ -19,14 +19,17 @@
            // display: flex;
 
         }
+        .fw-bold{
+            font-size: 3ch;
+        }
         </style>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <div class="container-fluid">
-     <a  class="navbar-brand" href="{{ url('sports') }}">【ＮＥＯＰＨＲＯＮ】<h2></h2></a>
-     {{-- <a  class="navbar-brand" href="{{ url('register') }}">register<h2></h2></a> --}}
+     {{-- <a  class="navbar-brand" href="{{ url('sports') }}">【ＮＥＯＰＨＲＯＮ】<h2></h2></a> --}}
 
+     <p class="fw-bold" href="{{ url('sports') }}">【ＮＥＯＰＨＲＯＮ】</p>
 
      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
@@ -34,7 +37,7 @@
         <div class="collapse navbar-collapse  justify-content-end px-4" id="collapsibleNavbar">
             <ul class="navbar-nav" >
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('sales') }}"><h5>sales</h5></a>
+                <a class="nav-link" href="{{ url('sales') }}"><h5>Home</h5></a>
             </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('saleItems') }}"><h5>saleItems</h5></a>

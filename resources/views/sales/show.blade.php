@@ -64,8 +64,12 @@
                                         <td>{{ $total_price_sum }}</td>
                                     </tr>
 
+                                </tfoot>
     </table>
-
+    <tr>
+        <td colspan="4" class="text-right"><strong></strong></td>
+        <td> <a href="{{ url('/admincart/'. $Sales->id) }}"><button type='submit'class='btn btn-primary'>Click to add</button></a></td>
+      </tr>
     <a href="{{ url('/admincart/invoice/'. $Sales->id) }}"><button type='submit' target='_blank'class='btn btn-danger float-end mx-1'>View Invoice</button></a>
     <a href="{{ url('/admincart/invoice/'. $Sales->id.'/generate') }}"><button type='submit' class='btn btn-warning float-end mx-1'>Download Invoice</button></a>
  {{-- </body> --}}

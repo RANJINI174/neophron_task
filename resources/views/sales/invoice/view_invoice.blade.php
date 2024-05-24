@@ -30,7 +30,6 @@
             padding: 8px;
             font-size: 14px;
         }
-
         .heading {
             font-size: 24px;
             margin-top: 12px;
@@ -84,13 +83,14 @@
         <thead>
             <tr>
             <th width="50%" colspan="2">
-            <h2 class="text-start">【ＮＥＯＰＨＲＯＮ】</h2>
+            {{-- <h2 class="text-start">【ＮＥＯＰＨＲＯＮ】</h2> --}}
+            <p class="fw-bold">Neophron Technologies</p>
                 </th>
                 <th width="50%" colspan="2" class="text-end company-data">
                     <span>Invoice Id:  {{ $Sales->invoice_no }}</span> <br>
                     <span>Date: {{$Sales->created_at}}</span> <br>
                     <span>Zip code : 6381905</span> <br>
-                    <span>Address: @foreach($customers as $customer)
+                    <span>Address: @foreach($Customers as $customer)
                   @if ($customer->id == $Sales->customer_id)
                       {{ $customer->billing_address }}
                   @endif
@@ -108,7 +108,7 @@
                 <td> {{$Sales->id}}</td>
 
                 <td>Full Name:</td>
-                <td> @foreach($customers as $customer)
+                <td> @foreach($Customers as $customer)
                   @if ($customer->id == $Sales->customer_id)
                       {{ $customer->customer_name }}
                   @endif
@@ -120,7 +120,7 @@
 
                 <td>Email Id:</td>
                 <td>
-                    @foreach($customers as $customer)
+                    @foreach($Customers as $customer)
                   @if ($customer->id == $Sales->customer_id)
                       {{ $customer->email}}
                   @endif
@@ -131,9 +131,9 @@
                 <td>{{$Sales->created_at}}</td>
 
                 <td>Phone:</td>
-                <td>@foreach($customers as $customer)
+                <td>@foreach($Customers as $customer)
                   @if ($customer->id == $Sales->customer_id)
-                      {{ $customer->mobile}}
+                      {{ $customer->mobile_no}}
                   @endif
               @endforeach</td>
             </tr>
@@ -143,7 +143,7 @@
 
                 <td>Address:</td>
                 <td>
-                    @foreach($customers as $customer)
+                    @foreach($Customers as $customer)
                   @if ($customer->id == $Sales->customer_id)
                       {{ $customer->shipping_address }}
                   @endif
@@ -198,7 +198,8 @@
         @endforeach
 
         <tr>
-                <td colspan="3" class="total-heading">Total Amount - <small>Inc. all vat/tax</small> :</td>
+                <td colspan="4" class="total-heading">Total Amount - <small>Inc. all vat/tax</small> :</td>
+                {{-- <td width="10%"></td> --}}
                 <td colspan="1" class="total-heading">{{ $total_price_sum }}</td>
             </tr>
           </tbody>
