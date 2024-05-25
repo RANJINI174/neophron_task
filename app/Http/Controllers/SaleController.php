@@ -77,12 +77,12 @@ class SaleController extends Controller
         // return view('sales.show',compact('Sales','Groups'));
         $Sales = Sales::findOrFail($id);
         $Customers = Customers::all();
-        $Sports = Sports::all();
+        $sports = Sports::all();
         $categories = categories::all();
         $SaleItems = $Sales->SaleItems;
         $total_price_sum = $SaleItems->sum('total_price');
 
-        return view('sales.show',compact('Groups','Sales','Customers','categories','SaleItems','Sports','total_price_sum'));
+        return view('sales.show',compact('Groups','Sales','Customers','categories','SaleItems','sports','total_price_sum'));
     }
 
     /**
@@ -147,11 +147,15 @@ class SaleController extends Controller
     $taxDetails = TaxDetails::find($validated['tax_id']);
     $taxPercentage = $taxDetails->tax_percentage;
 
+    // $taxDetails = TaxDetails::find($validated['tax_id']);
+    // $taxPercentage = $taxDetails->tax_percentage;
+
 
     $unitPrice = $validated['unit_price'];
     $quantity = $validated['quantity'];
     $taxAmount = ($unitPrice * $quantity) * ($taxPercentage / 100);
     $totalPrice = ($unitPrice * $quantity) + $taxAmount;
+
 
     $SaleItems = new SaleItems();
     $SaleItems->sale_id = $validated['sale_id'];
@@ -240,5 +244,6 @@ public function generateInvoice(int $id){
 public function show3(Request $request, $id){
     $input = $request->all();
     SaleItems::create($input);
+
 }
 }

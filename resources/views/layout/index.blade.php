@@ -31,6 +31,7 @@
 
      <p class="fw-bold" href="{{ url('sports') }}">【ＮＥＯＰＨＲＯＮ】</p>
 
+
      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,6 +39,9 @@
             <ul class="navbar-nav" >
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('sales') }}"><h5>Home</h5></a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('sports') }}"><h5>products</h5></a>
             </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('saleItems') }}"><h5>saleItems</h5></a>
@@ -57,6 +61,7 @@
                   <ul class="dropdown-menu dropdown-menu-dark">
                       <li><a class="dropdown-item" href="{{ url('/customers') }}">Customer Details</a></li>
                       <li><a class="dropdown-item" href="{{ url('/groups') }}">Group Details</a></li>
+                      <li><a class="dropdown-item" href="{{ url('/tax') }}">Tax Details</a></li>
                   </ul>
               </li>
             </ul>

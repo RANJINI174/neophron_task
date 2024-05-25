@@ -45,7 +45,7 @@
                                         <td>{{ $loop->iteration }}</td>
 
                                         <td>
-                                             @foreach ($Sports as $sport)
+                                             @foreach ($sports as $sport)
                                         @if ($sport->id == $item->item_id)
                                      {{ $sport->name }}
                                      @endif
