@@ -51,6 +51,10 @@
       <input type="number" class="form-control" id="unit_price" placeholder="Enter unit price" name="unit_price">
     </div>
     <div class="mb-3 mt-3">
+      <label for="unit_price">tax_name:</label>
+      <input type="text" class="form-control" id="tax_id" placeholder="Enter tax name" name="tax_id">
+    </div>
+    <div class="mb-3 mt-3">
         <label for="total_price">total_price:</label>
         <input type="number" class="form-control" id="total_price" placeholder="Enter unit price" name="total_price">
       </div>

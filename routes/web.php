@@ -41,3 +41,7 @@ Route::post('/admincart/{id}/show2', [SaleController::class, 'show2']);
 Route::get('/admincart/invoice/{id}', [SaleController::class, 'viewInvoice']);
 Route::get('/admincart/invoice/{id}/generate', [SaleController::class, 'generateInvoice']);
 Route::resource("/tax", TaxController::class);
+
+
+
+

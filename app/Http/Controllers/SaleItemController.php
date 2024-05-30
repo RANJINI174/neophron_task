@@ -30,6 +30,7 @@ class SaleItemController extends Controller
         $categories = categories::all();
         $customers = Customers::all();
         $Sports = Sports::all();
+        $SaleItems = SaleItems::with('taxDetail')->get();
         return view ('saleItems.index',compact('SaleItems','sales','customers','Sports','categories'));
 
 

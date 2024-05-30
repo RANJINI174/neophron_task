@@ -18,6 +18,7 @@
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>unit_price</th>
+                    <th>tax_name</th>
                     <th>total_price</th>
                     <th>Operations</th>
                   </tr>
@@ -41,6 +42,7 @@
                                                  @endforeach </td>
                                                     <td>{{ $item->quantity }}</td>
                                                     <td>{{ $item->unit_price }}</td>
+                                                    <td>{{ $item->tax_id }}</td>
                                                     <td>{{ $item->total_price }}</td>
 
 

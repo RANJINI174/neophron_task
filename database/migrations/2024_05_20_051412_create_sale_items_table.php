@@ -20,6 +20,7 @@ return new class extends Migration
                     // $table->string('item_id');
                     $table->string('quantity',50);
                     $table->string('unit_price',40);
+                    // $table->string('tax',40);
                     $table->string('total_price',30);
             $table->timestamps();
         });

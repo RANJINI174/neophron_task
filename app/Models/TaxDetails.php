@@ -12,4 +12,9 @@ class TaxDetails extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['tax_name', 'tax_percentage'];
 
+    
+public function saleItems()
+{
+    return $this->hasMany(SaleItems::class, 'tax_id');
+}
 }

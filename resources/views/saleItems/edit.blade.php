@@ -27,6 +27,8 @@
         <input type="number" name="quantity" id="quantity" value="{{$SaleItems->quantity}}" class="form-control"></br>
         <label>Unit Price</label></br>
         <input type="textarea" name="unit_price" id="unit_price" value="{{$SaleItems->unit_price}}" class="form-control"></br>
+        <label>Tax Name</label></br>
+        <input type="textarea" name="tax_id" id="tax_id" value="{{$SaleItems->tax_id}}" class="form-control"></br>
         <label>total_price</label></br>
         <input type="textarea" name="total_price" id="total_price" value="{{$SaleItems->total_price}}" class="form-control"></br>
 

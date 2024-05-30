@@ -17,5 +17,8 @@ class SaleItems extends Model
     {
         return $this->belongsTo(Sports::class, 'item_id');
     }
-
+    public function taxDetail()
+    {
+        return $this->belongsTo(TaxDetails::class, 'tax_id');
+    }
 }
