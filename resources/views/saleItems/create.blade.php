@@ -36,7 +36,7 @@
          <div class="form-control ">
               <select class="form-control" id="item_id" name="item_id" required focus>
               @foreach ($Sports as $sports)
-                  <option value="{{ $sports->id }}"  selected>{{ $sports->name }}</option>
+                  <option value="{{ $sports->id }}"  data-price="{{ $sports->price }}">{{ $sports->name }}</option>
                   @endforeach
                   <option value="Select categoy" disabled selected>Select product Name</option>
               </select>
@@ -50,10 +50,23 @@
       <label for="unit_price">Unit price:</label>
       <input type="number" class="form-control" id="unit_price" placeholder="Enter unit price" name="unit_price">
     </div>
-    <div class="mb-3 mt-3">
-      <label for="unit_price">tax_name:</label>
-      <input type="text" class="form-control" id="tax_id" placeholder="Enter tax name" name="tax_id">
-    </div>
+    {{-- <div class="mb-3 mt-3">
+      <label for="tax_id">tax id:</label>
+      <input type="number" class="form-control" id="tax_id" placeholder="Enter unit price" name="tax_id">
+    </div> --}}
+      <div class="form-group row">
+        <label for="role" >Tax </label>
+            <div class="form-control ">
+                 <select class="form-control" id="tax_id" name="tax_id" required focus>
+                 @foreach ($TaxDetails as $tax)
+                     <option value="{{ $tax->id }}"  selected>{{ $tax->tax_name }}</option>
+                     @endforeach
+                     <option value="Select tax type" disabled selected>Select Tax type</option>
+                 </select>
+            </div>
+   </div>
+
+
     <div class="mb-3 mt-3">
         <label for="total_price">total_price:</label>
         <input type="number" class="form-control" id="total_price" placeholder="Enter unit price" name="total_price">
@@ -65,5 +78,12 @@
   {{-- </form><a href="{{ url('sports') }}"><button class='btn btn-primary float-end '>Back to home</button></a> --}}
 
 </div>
+<script>
+    document.getElementById('item_id').addEventListener('change', function() {
+      var selectedOption = this.options[this.selectedIndex];
+      var price = selectedOption.getAttribute('data-price');
+      document.getElementById('unit_price').value = price;
+    });
+  </script>
 </body>
 </html>

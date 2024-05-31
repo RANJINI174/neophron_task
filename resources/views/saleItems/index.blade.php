@@ -42,7 +42,17 @@
                                                  @endforeach </td>
                                                     <td>{{ $item->quantity }}</td>
                                                     <td>{{ $item->unit_price }}</td>
-                                                    <td>{{ $item->tax_id }}</td>
+                           {{-- tax_name --}}
+                                                    <td>
+                                                        @foreach ($TaxDetails as $taxdetails)
+                                                   @if ($taxdetails->id == $item->tax_id)
+                                                {{ $taxdetails->tax_name }}
+                                                @endif
+                                                @endforeach
+                                               </td>
+
+                                                     {{-- <td>{{ $item->taxDetails->tax_name}}</td> --}}
+                                                    {{-- <td>{{ $item->taxDetails->tax_name ?? 'N/A' }}</td> --}}
                                                     <td>{{ $item->total_price }}</td>
 
 

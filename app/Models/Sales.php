@@ -17,6 +17,10 @@ class Sales extends Model
          return $this->hasMany(SaleItems::class,'sale_id');
 
      }
+     public function taxDetails()
+     {
+         return $this->belongsTo(TaxDetails::class, 'tax_id');
+     }
 
      protected static function boot()
      {

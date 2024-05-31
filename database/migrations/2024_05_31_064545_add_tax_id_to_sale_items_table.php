@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('sale_items', function (Blueprint $table) {
-        //    $table->string('tax');
-           $table->unsignedBigInteger('tax_id')->nullable()->after('unit_price');
-           $table->foreign('tax_id')->references('id')->on('tax_details');
+             // Add the new column next to 'unit_price'
+            $table->unsignedBigInteger('tax_id')->nullable()->after('unit_price');
+             // Add the foreign key constraint
+             $table->foreign('tax_id')->references('id')->on('tax_details');
         });
     }
 

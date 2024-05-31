@@ -42,6 +42,8 @@ Route::get('/admincart/invoice/{id}', [SaleController::class, 'viewInvoice']);
 Route::get('/admincart/invoice/{id}/generate', [SaleController::class, 'generateInvoice']);
 Route::resource("/tax", TaxController::class);
 
+Route::get('/sale_items', [SaleItemController::class, 'index'])->name('sale_items.index');
+
 
 
 

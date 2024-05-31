@@ -37,13 +37,21 @@
         <input type="number" class="form-control" id="unit_price" placeholder="Enter unit price" name="unit_price">
       </div>
 
-      <div class="form-group row">
-       <label for="tax_id" >Tax:</label>
+
+      {{-- <div class="form-group row">
+       <label for="role" >Tax:</label>
            <div class="form-control ">
                <select class="form-control" id="tax_id" name="tax_id" required focus>
-                 @foreach ($tax_details as $tax)
+                 @foreach ($TaxDetails as $tax)
                      <option value="{{ $tax->id }}"  selected>{{ $tax->tax_name }}</option>
-                     @endforeach
+                     @endforeach --}}
+                     <div class="form-group row">
+                        <label for="tax_id" class="col-sm-3 col-form-label">Tax:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="tax_id" name="tax_id" required>
+                                @foreach ($TaxDetails as $tax)
+                                    <option value="{{ $tax->id }}">{{ $tax->tax_name }}</option>
+                                @endforeach
                      <option value="Select categoy" disabled selected>Select product Name</option>
                </select>
            </div>

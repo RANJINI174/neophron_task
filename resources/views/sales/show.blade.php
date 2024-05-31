@@ -35,6 +35,7 @@
         <th>Product Name</th>
         <th>Quantity</th>
         <th>unit_price</th>
+        <th>Tax Name</th>
         <th>total_price</th>
 
       </tr>
@@ -53,6 +54,14 @@
                                     </td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>{{ $item->unit_price }}</td>
+                                        <td>
+                                            @foreach ($TaxDetails as $taxdetails)
+                                       @if ($taxdetails->id == $item->tax_id)
+                                    {{ $taxdetails->tax_name }}
+                                    @endif
+                                    @endforeach
+                                   </td>
+
                                         <td>{{ $item->total_price }}</td>
 
                                     </tr>
@@ -60,7 +69,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr class="bg-secondary text-white">
-                                        <td colspan="4" class="text-right"><strong>Total:</strong></td>
+                                        <td colspan="5" class="text-right"><strong>Total:</strong></td>
                                         <td>{{ $total_price_sum }}</td>
                                     </tr>
 

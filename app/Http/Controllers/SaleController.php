@@ -26,10 +26,12 @@ class SaleController extends Controller
     {
 
         $sales = Sales::all();
+        $SaleItems = SaleItems::all();
        // $sales = Sales::with('customers')->get();
         $categories = categories::all();
         $customers = Customers::all();
-        return view ('sales.index',compact('sales','categories','customers'));
+        $TaxDetails = TaxDetails::whereIn('id', $SaleItems->pluck('tax_id'))->get();
+        return view ('sales.index',compact('sales','categories','customers','TaxDetails'));
 
 
         // $Sales = Sales::with('items')->get();
@@ -49,22 +51,42 @@ class SaleController extends Controller
     {
         $Sales = Sales::all();
         $customers = Customers::all();
+        $TaxDetails = TaxDetails::all();
         //$status =true;
         //return view('sports.create')->with('categories',$categories);
-        return view('sales.create',compact('Sales', 'customers'));
+        return view('sales.create',compact('Sales', 'customers','TaxDetails'));
     }
 
 
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request): RedirectResponse
+    // {
+    //     $input = $request->all();
+    //     Sales::create($input);
+    //     return redirect('sales')->with('flash_message', 'Sales Addedd!');
+
+    // }
     public function store(Request $request): RedirectResponse
     {
-        $input = $request->all();
-        Sales::create($input);
-        //categories::create($input);
-        return redirect('sales')->with('flash_message', 'Sales Addedd!');
+    $request->validate([
+        'sale_id' => 'required|exists:sales,id',
+        'item_id' => 'required|exists:sports,id',
+        'quantity' => 'required|integer',
+        'unit_price' => 'required|numeric',
+        'total_price' => 'required|numeric',
+        'tax_id' => 'required|exists:tax_details,id',
+    ]);
 
+    // Capture all input data
+    $input = $request->all();
+
+    // Create a new SaleItem with the input data
+    Sales::create($input);
+
+    // Redirect to sale items list with success message
+    return redirect('sales')->with('flash_message', 'Sales Added!');
     }
 
     /**
@@ -80,9 +102,10 @@ class SaleController extends Controller
         $sports = Sports::all();
         $categories = categories::all();
         $SaleItems = $Sales->SaleItems;
+        $TaxDetails = TaxDetails::all();
         $total_price_sum = $SaleItems->sum('total_price');
 
-        return view('sales.show',compact('Groups','Sales','Customers','categories','SaleItems','sports','total_price_sum'));
+        return view('sales.show',compact('Groups','Sales','Customers','categories','SaleItems','sports','total_price_sum','TaxDetails'));
     }
 
     /**
@@ -98,8 +121,9 @@ class SaleController extends Controller
         $Sales = Sales::findOrFail($id);
         $SaleItems = SaleItems::all();
         $Customers = Customers::all();
+        $TaxDetails = TaxDetails::all();
         //$status =true;
-        return view('sales.edit',compact('Sales', 'SaleItems','Customers'));
+        return view('sales.edit',compact('Sales', 'SaleItems','Customers','TaxDetails'));
 
     }
 
@@ -129,9 +153,9 @@ class SaleController extends Controller
         $sales = Sales::findOrFail($id);
         $sports = Sports::all();
         $categories = categories::all();
-        $tax_details = TaxDetails::all();
+        $TaxDetails = TaxDetails::all();
 
-     return view('sales.admincard',compact('sports','categories','sales','tax_details'));
+     return view('sales.admincard',compact('sports','categories','sales','TaxDetails'));
     }
 
     public function show2(Request $request, $id){
@@ -144,8 +168,9 @@ class SaleController extends Controller
         'tax_id' => 'required|exists:tax_details,id',
     ]);
 
-    $taxDetails = TaxDetails::find($validated['tax_id']);
-    $taxPercentage = $taxDetails->tax_percentage;
+    // $taxDetails = TaxDetails::find($validated['tax_id']);
+    $TaxDetails = TaxDetails::find($validated['tax_id']);
+    $taxPercentage = $TaxDetails->tax_percentage;
 
     // $taxDetails = TaxDetails::find($validated['tax_id']);
     // $taxPercentage = $taxDetails->tax_percentage;
@@ -163,6 +188,7 @@ class SaleController extends Controller
     $SaleItems->quantity = $validated['quantity'];
     $SaleItems->unit_price = $validated['unit_price'];
     // $SaleItems->total_price = $totalPrice;
+    $SaleItems->tax_id = $validated['tax_id'];
      $SaleItems->total_price = $totalPrice;
     $SaleItems->save();
 
@@ -180,14 +206,15 @@ class SaleController extends Controller
     $Sales = Sales::findOrFail($id);
     $Customers = Customers::all();
     $sports = Sports::all();
-    $tax_details = TaxDetails::all();
+    // $tax_details = TaxDetails::all();
+    $TaxDetails = TaxDetails::all();
     $categories = categories::all();
 
 
 
 
 
-    return view('sales.show', compact('Sales', 'Customers', 'categories', 'sports', 'SaleItems', 'total_price_sum','tax_details'));
+    return view('sales.show', compact('Sales', 'Customers', 'categories', 'sports', 'SaleItems', 'total_price_sum','TaxDetails'));
 }
 
 
